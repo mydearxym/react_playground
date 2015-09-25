@@ -6,157 +6,159 @@ var QuestionList = require('./QuestionList.js');
 var _ = require('lodash');
 
 module.exports = React.createClass({displayName: "exports",
-	getInitialState:function(){
-		var questions = [
-			{
-				key: 1,
-				title:'产品经理与程序员矛盾的本质是什么？',
-				description:'理性探讨，请勿撕逼。产品经理的主要工作职责是产品设计。接受来自其他部门的需求，经过设计后交付研发。但这里有好些职责不清楚的地方。',
-				voteCount: 10,
-			},
-			{
-				key: 2,
-				title:'热爱编程是一种怎样的体验？',
-				description:'别人对玩游戏感兴趣，我对写代码、看技术文章感兴趣；把泡github、stackoverflow、v2ex、reddit、csdn当做是兴趣爱好；遇到重复的工作，总想着能不能通过程序实现自动化；喝酒的时候把写代码当下酒菜，边喝边想边敲；不给工资我也会来加班；做梦都在写代码。',
-				voteCount: 8,
-			},
-		];
+  getInitialState: function () {
+    var questions = [
+      {
+        key: 1,
+        title: '产品经理与程序员矛盾的本质是什么？',
+        description: '理性探讨，请勿撕逼。产品经理的主要工作职责是产品设计。接受来自其他部门的需求，经过设计后交付研发。但这里有好些职责不清楚的地方。',
+        voteCount: 10,
+      },
+      {
+        key: 2,
+        title: '热爱编程是一种怎样的体验？',
+        description: '别人对玩游戏感兴趣，我对写代码、看技术文章感兴趣；把泡github、stackoverflow、v2ex、reddit、csdn当做是兴趣爱好；遇到重复的工作，总想着能不能通过程序实现自动化；喝酒的时候把写代码当下酒菜，边喝边想边敲；不给工资我也会来加班；做梦都在写代码。',
+        voteCount: 8,
+      }
+    ];
 
-		return {
-			questions: questions,
-			formDisplayed: false,
-		}
-	},
-	onToggleForm:function(){
-		this.setState({
-			formDisplayed: !this.state.formDisplayed,
-		})
-	},
-	onNewQuestion:function( newQuestion ){
-		newQuestion.key = this.state.questions.length + 1;
+    return {
+      questions: questions,
+      formDisplayed: false
+    }
+  },
+  onToggleForm: function () {
+    this.setState({
+      formDisplayed: !this.state.formDisplayed,
+    })
+  },
+  onNewQuestion: function (newQuestion) {
+    newQuestion.key = this.state.questions.length + 1;
 
-		var newQuestions = this.state.questions.concat( newQuestion );
+    var newQuestions = this.state.questions.concat(newQuestion);
 
-		newQuestions = this.sortQuestion( newQuestions );
+    newQuestions = this.sortQuestion(newQuestions);
 
-		this.setState({
-			questions: newQuestions,
-		})
-	},
-	sortQuestion:function(questions){
-		questions.sort(function(a,b){
-			return b.voteCount - a.voteCount;
-		});
+    this.setState({
+      questions: newQuestions,
+    })
+  },
+  sortQuestion: function (questions) {
+    questions.sort(function (a, b) {
+      return b.voteCount - a.voteCount;
+    });
 
-		return questions;
+    return questions;
 
-	},
-	onVote:function(key,newCount){
-		var questions = _.uniq( this.state.questions );
-		var index = _.findIndex( questions, function(qst){
-			return qst.key == key;
-		} )
+  },
+  onVote: function (key, newCount) {
+    var questions = _.uniq(this.state.questions);
+    var index = _.findIndex(questions, function (qst) {
+      return qst.key == key;
+    })
 
-		questions[index].voteCount = newCount;
+    questions[index].voteCount = newCount;
 
-		questions = this.sortQuestion(questions);
+    questions = this.sortQuestion(questions);
 
-		this.setState({
-			questions: questions
-		})
-	},
-	render:function(){
-		return (
-		React.createElement("div", null, 
-			React.createElement("div", {className: "jumbotron text-center"}, 
-			    React.createElement("div", {className: "container"}, 
-			      React.createElement("h1", null, "React 问答"), 
-			      React.createElement(ShowAddButton, {onToggleForm: this.onToggleForm})
-			    )
-			), 
-			React.createElement("div", {className: "main container"}, 
-			  React.createElement(QuestionForm, {
-			  	onNewQuestion: this.onNewQuestion, 
-			  	onToggleForm: this.onToggleForm, 
-			  	formDisplayed: this.state.formDisplayed}), 
-			  
-			  React.createElement(QuestionList, {onVote: this.onVote, questions: this.state.questions})
+    //任何时候只要调用 setState , react就会渲染页面(diff机制)
+    this.setState({
+      questions: questions
+    })
+  },
+  render: function () {
+    return (
+      React.createElement("div", null, 
+        React.createElement("div", {className: "jumbotron text-center"}, 
+          React.createElement("div", {className: "container"}, 
+            React.createElement("h1", null, "React -- 问答"), 
+            React.createElement(ShowAddButton, {onToggleForm: this.onToggleForm})
+          )
+        ), 
+        React.createElement("div", {className: "main container"}, 
+          React.createElement(QuestionForm, {
+            onNewQuestion: this.onNewQuestion, 
+            onToggleForm: this.onToggleForm, 
+            formDisplayed: this.state.formDisplayed}), 
 
-			)
-		)
-		)
-	}
+          React.createElement(QuestionList, {onVote: this.onVote, questions: this.state.questions})
+
+        )
+      )
+    )
+  }
 })
 
 },{"./QuestionForm.js":2,"./QuestionList.js":4,"./ShowAddButton.js":5,"lodash":8,"react":163}],2:[function(require,module,exports){
 var React = require('react');
 
 module.exports = React.createClass({displayName: "exports",
-	handleForm:function(e){
-		e.preventDefault();
-		if(!this.refs.title.getDOMNode().value) return;
+  handleForm: function (e) {
+    e.preventDefault();
+    if (!this.refs.title.getDOMNode().value) return;
 
-		var newQuestion = {
-			title: this.refs.title.getDOMNode().value,
-			description: this.refs.description.getDOMNode().value,
-			voteCount: 0,
-		}
+    var newQuestion = {
+      title: this.refs.title.getDOMNode().value,
+      description: this.refs.description.getDOMNode().value,
+      voteCount: 0,
+    }
 
-		this.refs.addQuestionForm.getDOMNode().reset();
+    this.refs.addQuestionForm.getDOMNode().reset(); // reset 为自带属性哈
 
-		this.props.onNewQuestion( newQuestion );
-	},
-	render:function(){
-		var styleObj={
-			display: this.props.formDisplayed ? 'block': 'none',
-		}
+    this.props.onNewQuestion(newQuestion);
+  },
+  render: function () {
+    var styleObj = {
+      display: this.props.formDisplayed ? 'block' : 'none',
+    }
 
-		return (
-			React.createElement("form", {ref: "addQuestionForm", style:  styleObj, name: "addQuestion", className: "clearfix", onSubmit: this.handleForm}, 
-			  React.createElement("div", {className: "form-group"}, 
-			    React.createElement("label", {htmlFor: "qtitle"}, "问题"), 
-			    React.createElement("input", {ref: "title", type: "text", className: "form-control", id: "qtitle", placeholder: "您的问题的标题"})
-			  ), 
-			  React.createElement("textarea", {ref: "description", className: "form-control", rows: "3", placeholder: "问题的描述"}), 
-			  React.createElement("button", {className: "btn btn-success pull-right"}, "确认"), 
-			  React.createElement("a", {className: "btn btn-default pull-right", onClick: this.props.onToggleForm}, "取消")
-			)
-		)
-	}
+    return (
+      React.createElement("form", {ref: "addQuestionForm", style:  styleObj, name: "addQuestion", className: "clearfix", onSubmit: this.handleForm}, 
+        React.createElement("div", {className: "form-group"}, 
+          React.createElement("label", {htmlFor: "qtitle"}, "问题"), 
+          React.createElement("input", {ref: "title", type: "text", className: "form-control", id: "qtitle", placeholder: "您的问题的标题"})
+        ), 
+        React.createElement("textarea", {ref: "description", className: "form-control", rows: "3", placeholder: "问题的描述"}), 
+        React.createElement("button", {className: "btn btn-success pull-right"}, "确认"), 
+        React.createElement("a", {className: "btn btn-default pull-right", onClick: this.props.onToggleForm}, "取消")
+      )
+    )
+  }
 })
 
 },{"react":163}],3:[function(require,module,exports){
 var React = require('react');
 
 module.exports = React.createClass({displayName: "exports",
-	voteUp:function(e){
+  voteUp: function (e) {
 
-		var newCount = parseInt(this.props.voteCount ,10) + 1;
-		this.props.onVote( this.props.questionKey, newCount )
-	},
-	voteDown:function(e){
-		var newCount = parseInt(this.props.voteCount ,10) - 1;
-		this.props.onVote( this.props.questionKey, newCount )
-	},
-	render:function(){
-		return (
-			React.createElement("div", {className: "media"}, 
-			  React.createElement("div", {className: "media-left"}, 
-			    React.createElement("button", {className: "btn btn-default", onClick: this.voteUp}, 
-			      React.createElement("span", {className: "glyphicon glyphicon-chevron-up"}), 
-			      React.createElement("span", {className: "vote-count"}, this.props.voteCount)
-			    ), 
-			    React.createElement("button", {className: "btn btn-default", onClick: this.voteDown}, 
-			      React.createElement("span", {className: "glyphicon glyphicon-chevron-down"})
-			    )
-			  ), 
-			  React.createElement("div", {className: "media-body"}, 
-			    React.createElement("h4", {className: "media-heading"}, this.props.title), 
-			    React.createElement("p", null, this.props.description)
-			  )
-			)
-		)
-	}
+    var newCount = parseInt(this.props.voteCount, 10) + 1;
+    this.props.onVote(this.props.questionKey, newCount)
+  },
+  voteDown: function (e) {
+    var newCount = parseInt(this.props.voteCount, 10) - 1;
+    this.props.onVote(this.props.questionKey, newCount)
+  },
+  render: function () {
+    return (
+      React.createElement("div", {className: "media"}, 
+        React.createElement("div", {className: "media-left"}, 
+          React.createElement("button", {className: "btn btn-default", onClick: this.voteUp}, 
+            React.createElement("span", {className: "glyphicon glyphicon-chevron-up"}), 
+            React.createElement("span", {className: "vote-count"}, this.props.voteCount)
+          ), 
+          React.createElement("button", {className: "btn btn-default", onClick: this.voteDown}, 
+            React.createElement("span", {className: "glyphicon glyphicon-chevron-down"})
+          )
+        ), 
+        React.createElement("div", {className: "media-body"}, 
+          React.createElement("h4", {className: "media-heading"}, this.props.title), 
+
+          React.createElement("p", null, this.props.description)
+        )
+      )
+    )
+  }
 })
 
 },{"react":163}],4:[function(require,module,exports){
@@ -165,35 +167,35 @@ var QuestionItem = require('./QuestionItem.js');
 
 
 module.exports = React.createClass({displayName: "exports",
-	render:function(){
-		var questions = this.props.questions;
-		if( !Array.isArray(questions) ) throw new Error('this.props.questions问题必须是数组');
-		var questionComps = questions.map(function(qst){
-			return React.createElement(QuestionItem, {key: qst.key, 
-				questionKey: qst.key, 
-				title: qst.title, 
-				description: qst.description, 
-				voteCount: qst.voteCount, 
-				onVote:  this.props.onVote})
-		}.bind(this) );
+  render: function () {
+    var questions = this.props.questions;
+    if (!Array.isArray(questions)) throw new Error('this.props.questions问题必须是数组');
+    var questionComps = questions.map(function (qst) {
+      return React.createElement(QuestionItem, {key: qst.key, 
+                           questionKey: qst.key, 
+                           title: qst.title, 
+                           description: qst.description, 
+                           voteCount: qst.voteCount, 
+                           onVote:  this.props.onVote})
+    }.bind(this));
 
-		return (
-			React.createElement("div", {id: "questions", className: ""}, 
-			 questionComps
-			)
-		)
-	}
+    return (
+      React.createElement("div", {id: "questions", className: ""}, 
+        questionComps
+      )
+    )
+  }
 })
 
 },{"./QuestionItem.js":3,"react":163}],5:[function(require,module,exports){
 var React = require('react');
 
 module.exports = React.createClass({displayName: "exports",
-	render:function(){
-		return (
-			React.createElement("button", {id: "add-question-btn", onClick: this.props.onToggleForm, className: "btn btn-success"}, "添加问题")
-		)
-	}
+  render: function () {
+    return (
+      React.createElement("button", {id: "add-question-btn", onClick: this.props.onToggleForm, className: "btn btn-success"}, "添加问题")
+    )
+  }
 })
 
 },{"react":163}],6:[function(require,module,exports){
@@ -201,8 +203,8 @@ var React = require('react');
 var QuestionApp = require('./components/QuestionApp.js');
 
 var mainCom = React.render(
-	React.createElement(QuestionApp, null),
-	document.getElementById('app')
+  React.createElement(QuestionApp, null),
+  document.getElementById('app')
 )
 
 
