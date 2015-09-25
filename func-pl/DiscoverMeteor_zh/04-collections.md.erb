@@ -1,0 +1,375 @@
+---
+title: 集合
+slug: collections
+date: 0004/01/01
+number: 4
+points: 5
+photoUrl: http://www.flickr.com/photos/73449134@N04/8270793784/
+photoAuthor: Mike Lewinski
+contents: 学习 Meteor 的核心功能， 实时集合。|理解 Meteor 的数据同步工作方式|将集合与模板结合。|把简陋的原型变成完整的实时应用程序！
+paragraphs: 72
+---
+
+在第一章我们提到了 Meteor 的核心功能， 那就是服务器端和客户端的自动数据同步。
+
+在这一章我们要仔细了解一下它是如何运作的，以及研究那个让它得以运行的关键技术: Meteor **集合（Collection）**。
+
+集合是一个特殊的数据结构，它将你的数据存储到持久的、服务器端的 MongoDB 数据库中，并且与每一个连接的用户浏览器进行实时地同步。
+
+我们想让我们的 post 永久保存并且要在用户之间共享，所以我们一开始要新建一个叫做 `Posts` 的 collection 来保存它们。
+
+ 我们现在做一个社交新闻应用， 所以第一件事儿就是做一个人们贴上来的帖子的连接列表。 我们叫它 'post'
+
+很自然， 我们需要把它们存起来。 Meteor 捆绑了 MongoDB 运行在服务器上作为*持久化*存储。
+
+因此，尽管一个用户在浏览器上有各种状态(比如他们正在阅读哪一页， 或者正在输入那一条评论)， 而服务器上，尤其是 Mongo，保存的是永久保留的*一致*数据。 说到*一致*， 我们是指对于所有用户来说都是一样的数据: 每个用户也许在看不同的页面， 但是帖子 Post 的主列表对所有用户来说却始终是一样的。
+
+这些数据在Meteor中被存储在集合（**Collection**）中。 集合是一种特殊的数据结构， 通过发布（publications）和订阅（subscriptions）机制把数据实时同步上行或者下行到连接着的各个用户的浏览器或者Mongo数据库中。
+让我们看看如何做到的。
+
+我们希望我们的帖子Post可以持久存储并分享给用户们， 所以我们一开始就要建立一个叫 `Posts` 的集合来存储他们。 如果你还没有在根文件夹建立一个叫做 `collections/` 的文件夹， 并在里面放一个 `posts.js` 的文件的话，那现在就加上。
+
+~~~js
+Posts = new Mongo.Collection('posts');
+~~~
+<%= caption "lib/collections/posts.js" %>
+
+<%= commit "4-1", "增加一个 post 集合" %>
+
+代码所在的目录既不是 `client/` 也不是 `server/` 所以 `Posts` 会共同存在运行在服务器和客户端。 然而，这个集合的使用在两种环境下十分不同。
+
+<% note do %>
+
+### 要 Var 还是不要 Var?
+
+在 Meteor 中，关键字 `var` 限制对象的作用域在文件范围内。 我们想要 `Posts` 作用于整个应用范围内，因此我们在这里不要 Var 这个关键字。
+
+<% end %>
+
+### 存储数据
+
+网络应用有三种基本方式保存数据，各种方式有不同的角色：
+
+- **浏览器内存**：像 JavaScript 变量的这些数据会保存在浏览器内存中，意味着他们不是永久性的：它们存在于当前浏览器标签中，当标签关闭后它们会消失。
+- **浏览器存储**：浏览器也可存储较为永久性的数据，使用 cookies 或[本地存储 Local Storage](http://diveintohtml5.info/storage.html)。虽然数据会在不同 session 间保持，但是只是针对于当前用户（包括标签之间）但不能轻易地共享给其他用户。
+- **服务器端数据库**：你想永久保存数据并且提供给多个用户的最好方法是数据库（MongoDB 是 Meteor 应用默认的方案）。
+
+Meteor 使用所有三种方式，有时会从一个地方同步数据到另一个地方（我们会马上看到）。话虽如此，数据库仍然是包含数据主副本的“规范化的”数据源。
+
+### 客户端与服务器
+
+不在 `client/` 或 `server/` 文件夹中代码会在**客户端和服务器端**运行。所以 `Posts` 集合在**客户端和服务器端**都可用。但是，在各自环境下所起的作用有很大不同。
+
+在服务器，集合有一个任务就是和 Mongo 数据库联络，读取任何数据变化。 在这种情况下，它可以比对标准的数据库。
+
+在客户端，集合是一个*安全*拷贝来自于实时一致的数据*子集*。客户端的集合总是（通常）透明地实时更新数据子集。
+
+<% note do %>
+
+### Console，Console 与 Console
+
+在这一章，我们开始使用**浏览器控制台**，不过不要和**终端**、**Meteor Shell** 或者 **Mongo Shell** 搞混了。 现在对它们做个比对。
+
+#### 终端命令行（Terminal）
+
+<%= screenshot "terminal", "终端命令行" %>
+
+- 由操作系统启动
+- **服务器端** `console.log()` 会输出到这里
+- 有 `$` 提示符
+- 通常也被成为外壳程序 Shell，Bash
+
+#### 浏览器控制台（Browser Console）
+
+<%= screenshot "browser-console", "The Browser Console" %>
+
+- 在浏览器内启动，执行 Javascript 代码  
+- **客户端**的 `console.log()` 会输出到这里
+- 提示符是 `❯`
+- 也通常被称作 Javascript 控制台或者开发工具控制台（DevTools Console）
+
+#### Meteor Shell
+
+<%= screenshot "meteor-shell", "Meteor Shell" %>
+
+- 在 Terminal 用 `meteor shell` 调用。
+- 使你直接接触到应用的服务器端代码。
+- 提示符：`>`。
+
+#### Mongo 外壳程序 (Mongo Shell)
+
+<%= screenshot "mongo-shell", "Mongo 外壳" %>
+
+- 从终端由 `meteor mongo` 或者 `mrt mongo` 来启动
+- 你可以在这里直接操作 App 的数据库
+- 提示符 `>`
+- 也被称作 Mongo 控制台 (Mongo Console)
+
+注意在各种情况下你都不需要敲提示符（`$` `❯` 或 `>`）在命令前面。而且你可以认定任何不是用提示符起始的行都是前一个命令的输出结果。
+
+<% end %>
+
+### 服务器端的集合
+
+在服务器端，集合可以像 API 一样操作 Mongo 数据库。在服务器端的代码，你可以写像 `Posts.insert()` 或 `Posts.update()` 这样的 Mongo 命令，来对 Mongo 数据库中的 `posts` 集合进行操作。
+
+如果想直接看看 MongoDB 数据库，可以打开第二个终端窗口（这时候 Meteor 还在第一个终端窗口继续运行呢），在你应用的目录，输入命令 `meteor mongo` 启动 Mongo Shell 外壳程序。现在你可以输入标准的 Mongo 命令（如同以往，你可以敲 `ctrl+c` 快捷键退出）。比如让我们插入一个新的 post：
+
+~~~bash
+meteor mongo
+
+> db.posts.insert({title: "A new post"});
+
+> db.posts.find();
+{ "_id": ObjectId(".."), "title" : "A new post"};
+~~~
+<%= caption "Mongo Shell" %>
+
+<% note do %>
+
+### Meteor.com 上的 Mongo
+
+注意如果你把应用部署在 *.meteor.com 上，你一样可以通过 `meteor mongo myApp` 的方式进入你应用的 Mongo shell 进行操作。
+
+而且你还可以输入 `meteor logs myApp` 得到你应用的 log 日志。
+
+<% end %>
+
+Mongo 的语法由于借鉴了 Javascript 的语法所以十分熟悉。我们现在在 Mongo 外壳里不做过多的数据操作，不过我们可以随时来这里检查数据确保他们正常存在。
+
+### 客户端集合
+
+客户端的集合更加有趣。当你在客户端申明 `Posts = new Mongo.Collection('posts');` 你实际上是创建了一个本地的，在浏览器缓存中的真实的 Mongo 集合。 当我们说客户端集合被"缓存"是指它保存了你数据的一个*子集*，而且对这些数据提供了十分*快速*的访问。
+
+有一点我们必须要明白，因为这是 Meteor 工作的一个基础: 通常说来，客户端的集合的数据是你 Mongo 数据库的所有数据的一个子集（毕竟我们不会想把*整个*数据库的数据全传到客户端来）。
+
+第二，那些数据是被存储在*浏览器内存*中的，也就是说访问这些数据几乎不需要时间，不像去服务器访问 `Posts.find()` 那样需要等待，因为数据事实上已经载入了。
+
+<% note do %>
+
+### 介绍 MiniMongo
+
+Meteor 的客户端 Mongo 的技术实现被成为 MiniMongo。它目前还不是一个完美的实现，而且你会发现偶尔 Mongo 的功能在这里不能实现。不过本书中涉及到的功能都是可以在 Mongo 和 MiniMongo 中实现的。
+
+<% end %>
+
+### 客户端-服务器通讯
+
+这一切最关键的是如何让客户端的集合数据与服务器端同名的集合数据同步（以我们现在这个例子来说是 `posts`）。
+
+与其现在就解释细节不如让我们先来看看发生了什么。
+
+现在我们打开两个浏览器窗口，分别打开他们的浏览器控制台。然后在终端命令行打开 Mongo 外壳程序。
+
+现在可以在这三个地方看到我们早前时候建立的那个文档。(注意，我们应用的*用户界面*依然显示着我们之前的三个演示 post，请忽略它们。)
+
+~~~bash
+> db.posts.find();
+{title: "A new post", _id: ObjectId("..")};
+~~~
+<%= caption " Mongo 外壳" %>
+
+~~~js
+❯ Posts.findOne();
+{title: "A new post", _id: LocalCollection._ObjectID};
+~~~
+<%= caption "第一个浏览器控制台" %>
+
+让我们来创建一个帖子。在其中一个浏览器窗口中运行这个插入命令：
+
+~~~js
+❯ Posts.find().count();
+1
+❯ Posts.insert({title: "A second post"});
+'xxx'
+❯ Posts.find().count();
+2
+~~~
+<%= caption "第一个浏览器控制台" %>
+
+毫无疑问，这个帖子被加入到本地集合中。现在让我们查看一下 Mongo：
+
+~~~bash
+❯ db.posts.find();
+{title: "A new post", _id: ObjectId("..")};
+{title: "A second post", _id: 'yyy'};
+~~~
+<%= caption "Mongo 外壳" %>
+
+如同你所看见的那样，这个帖子一路上行一直到 Mongo 数据库中，而我们却没有为这个连接客户端和服务器的过程写任何一行代码。（严格地说，我们的确写了_一行_代码：`new Mongo.Collection('posts')`）。但是这没关系！
+
+现在到第二个浏览器窗口的控制台中输入这个命令：
+
+~~~js
+❯ Posts.find().count();
+2
+~~~
+<%= caption "第二个浏览器的控制台" %>
+
+这个帖子居然也在这儿！甚至于我们连刷新都没有在第二个浏览器做过，更何况我们也没有写任何代码来推送更新。这一切像魔术一般 - 而且是即时的，尽管这一切以后看起来都很显而易见。
+
+实际情况是服务器端的集合被客户端的集合通知说有一个新帖子，然后执行了一个任务把这个帖子放入 Mongo 数据库，进而会送到所有连接着的 `post` 即可。
+
+在浏览器的控制台取出所有的帖子没什么用处。我们以后会学习如何把这些数据显示在模板中，并把这个简单的 HTML 原型变成一个有用的实时 Web 应用。
+
+### 保持实时
+
+从浏览器控制台看到集合算是一件事儿，我们更应该关注的是能在屏幕上显示数据和数据的变化。要做到这一点，我们需要把我们的应用从一个单一显示静态数据的`页面`变成可以实时动态数据的`应用`。
+
+让我们看怎么做。
+
+### 从数据库提取数据
+
+首先我们先放点数据在数据库里。我们要做的是让服务器第一次初始启动的时候从一个数据文件中读取数据结构存在`Posts` 集合中。
+
+首先我们要确保数据库中没有数据。我们使用 `meteor reset` 命令清空数据库初始化我们的项目。当然，如果在真实的正在运行的正式项目上请务必十分小心。
+
+停止 Meteor 服务（通过键入 `ctrl-c`） 然后在命令行输入：
+
+~~~bash
+meteor reset
+~~~
+
+这个 reset 命令彻底地把 Mongo 数据库清空了。在开发的时候这个命令很有用，尤其当我们的数据库发生数据混乱的时候。
+
+现在重启我们的 Meteor 应用：
+
+~~~bash
+meteor
+~~~
+
+现在数据库已经清空，我们可以增加下面的代码以便在服务器启动时候检查数据库 `Posts` 集合，如果为空则载入三条帖子。
+
+~~~js
+if (Posts.find().count() === 0) {
+  Posts.insert({
+    title: 'Introducing Telescope',
+    url: 'http://sachagreif.com/introducing-telescope/'
+  });
+  
+  Posts.insert({
+    title: 'Meteor',
+    url: 'http://meteor.com'
+  });
+  
+  Posts.insert({
+    title: 'The Meteor Book',
+    url: 'http://themeteorbook.com'
+  });
+}
+~~~
+<%= caption "server/fixtures.js" %>
+
+<%= commit "4-2", "在 posts 集合中加入数据." %>
+
+我们把这个文件放到了 `server/`目录中，因此永远不会被加载到任何用户的浏览器中。这段代码在服务器启动的时候会立即运行，然后调用`插入`功能在数据库的 `posts` 集合中插入三条简单的帖子。因为我们还没有加入任何数据安全功能，所以无论在服务器还是在客户端运行这个文件都事实上没有区别的。
+
+现在我们用 `meteor` 命令启动服务，这三条帖子会被装在到数据库中。
+
+### 动态数据
+
+现在如果我们打开一个浏览器的控制台，我们可以看到这三个帖子都被转载到 MiniMongo 中了：
+
+~~~js
+❯ Posts.find().fetch();
+~~~
+<%= caption "浏览器控制台" %>
+
+要把这些 post 渲染到 HTML 中，我们需要用模板 helper。
+
+在第三章中，我们看到 Meteor 允许我们把 *数据上下文* 捆绑到我们的 Spacebars 模板上，从而用 HTML 视图显示这些简单的数据结构。 我们可以同样把我们的集合数据捆绑起来。我们马上就替换掉静态的 `postsData` Javascript 对象成为一个动态地集合。
+
+现在请随手删掉`postsData` 代码。下面是 `posts_list.js` 修改后的样子：
+
+~~~js
+Template.postsList.helpers({
+  posts: function() {
+    return Posts.find();
+  }
+});
+~~~
+<%= caption "client/templates/posts/posts_list.js" %>
+<%= highlight "2~4" %>
+
+<%= commit "4-3", "把集合连接到 `postsList` 模板上。" %>
+
+<% note do %>
+
+### 查找与提取
+
+在 Meteor 中，`find()` 返回值是一个*游标*。游标是一种[从动数据源](http://docs.meteor.com/#find)。如果你想输出内容，你可以对游标使用 `fetch()` 来把游标转换成数组。
+
+Meteor 十分智能地在应用中保持游标状态而避免动不动就把游标变成数组。这就造成了你不会经常在 Meteor 代码中看到 `fetch()` 被调用（基于同样原因，我们在上述例子中也没有使用 fetch ）。
+
+<% end %>
+
+现在，与其把帖子们变成静态的数组，不如直接把游标赋给 `posts` 帮助方法。但是如何做得到呢？如果我们回到浏览器上，我们可以看到：
+
+<%= screenshot "4-3", "使用活数据" %>
+
+我们可以清晰地看到 `{{#each}}` 帮助方法已经枚举了 `Posts` 中的所有帖子，而且显示到屏幕上。服务器端的集合从 Mongo 数据库中取出贴子数据，通过网络传到客户端的集合中，进而 handlers 的帮助方法 把这些数据加载到模板中。
+
+现在我们只需要再走一步；让我们通过控制台增加另一个帖子：
+
+~~~js
+Posts.insert({
+  title: 'Meteor Docs',
+  author: 'Tom Coleman', 
+  url: 'http://docs.meteor.com'
+});
+~~~
+<%= caption "浏览器控制台" %>
+
+再看浏览器 -  你会看到这些：
+
+<%= screenshot "4-4", "通过控制台增加帖子" %>
+
+你刚才第一次看到从动功能生效了。当我们告诉 handlebars 去枚举 `Posts.find()` 游标的时候，它自己知道如何发现游标的变动，从而用最简单的方式将变化后的正确数据显示到屏幕上。
+
+<% note do %>
+
+### 检查 DOM 变动
+
+在目前的情况下，最简单的变动应该就是增加一个 `<div class="post">...</div>`。 如果你想看看是否的确如此，你可以打开 DOM 检查器然后选择某个已经存在的帖子的 `<div>` 。
+
+现在在 Javascript 控制台，插入另外一个帖子。当你回到检查器，会发现一条新的 `<div>` 对应了新增的那个帖子。同时，原先选中的*那个*旧的 `<div>` 仍然存在。这是一种判断元素是否被重新渲染的有效方式。
+
+<% end %>
+
+### 连接集合: 发布与订阅
+
+到此为止，我们仍然用着 `autopublish` 这个包，这个包并不是为正式产品化的应用程序准备的。正如它的名字陈述的那样，它简单地把整个集合分享给所有连接的客户端。这个可不是我们期望的样子，所以让我们去掉它。
+
+打开一个终端窗口，输入：
+
+~~~bash
+meteor remove autopublish
+~~~
+
+这个操作有了立即的反应。当你打开浏览器，你会发现所有的帖子都不见了！这是因为我们一直依赖于 `autopublish` 来让我们的客户端可以镜像般地得到数据库中的所有帖子。
+
+最终我们需要做得到我们仅仅把我们客户端需要看到的帖子传输过来（需要考虑分页的情况）。不过暂时我们可以先设置把 `Posts` 所有帖子都发布出来。
+
+为达到这个目的，我们建立一个简单的 `Publish()` 函数，它仅仅返回一个反映所有帖子的游标。
+
+~~~js
+Meteor.publish('posts', function() {
+  return Posts.find();
+});
+~~~
+<%= caption "server/publications.js" %>
+
+在客户端我们需要*订阅*这个发布。我们仅仅需要增加这样一行到 `main.js` 文件中：
+
+~~~js
+Meteor.subscribe('posts');
+~~~
+<%= caption "client/main.js" %>
+
+<%= commit "4-4", "删除 `autopublish` 并建立基本的发布功能" %>
+
+如果你现在看一眼浏览器，发现帖子都回来了。哇！好险啊！
+
+### 总结
+
+我们都做了什么？尽管我们还没有用户界面，至少我们已经有了一个能用的应用。我们可以把这个应用部署到网络上，（使用浏览器的控制台）发帖子，并看到帖子显示在其他用户的浏览器上。

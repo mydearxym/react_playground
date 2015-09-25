@@ -1,0 +1,12 @@
+sudo: required
+language: node_js
+node_js:
+  - "0.10"
+
+before_install:
+  - "curl https://install.meteor.com | /bin/sh"
+
+script:
+  - meteor add rocketchat:livechat
+  - meteor add rocketchat:hubot
+  - meteor build --server demo.rocket.chat ./

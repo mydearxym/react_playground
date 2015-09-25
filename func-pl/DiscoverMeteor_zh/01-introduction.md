@@ -1,0 +1,110 @@
+---
+title: 简介
+slug: introduction
+date: 0001/01/01
+number: 1
+points: 1
+contents: Meteor 的特别之处|本书简介|本书的内容结构
+paragraphs: 35
+---
+
+先来活动一下大脑。假设你坐在电脑面前，在两个窗口中打开同一个文件夹。
+
+在其中一个窗口中删除一个文件，另一个窗口中的这个文件会消失吗？
+
+不用实际操作你也知道肯定会消失的。在本地文件系统中的操作，不用刷新或者回调，变动就能应用到所有地方。
+
+我们再来看一下相同的事情在网页中会有什么结果。例如，你在两个浏览器窗口中打开同一个 WordPress 后台页面，在其中一个窗口中新建了一篇文章。和桌面系统不同的是，不管等待多长时间，另一个窗口都不会发生变化，除非你手动刷新网页。
+
+过去这些年，我们已经习惯了，人和网站之间的通信是离散的。
+
+但是，作为新一代框架和技术之一的 Meteor，尝试挑战这一现状，让网页能够实时和响应。
+
+### Meteor 是什么？
+
+Meteor 是一个构建在 Node.js 之上的平台，用来开发实时网页程序。Meteor 位于程序数据库和用户界面之间，保持二者之间的数据同步更新。
+
+因为 Meteor 是基于 Node.js 开发的，所以在客户端和服务器端都使用 JavaScript 作为开发语言。而且，Meteor 程序的代码还能在前后两端共用。
+
+Meteor 这个平台很强大，网页程序开发过程中的很多复杂、容易出错的功能都能抽象出来，实现起来很简单。
+
+### 为什么使用 Meteor？
+
+那么，你为什么要花时间学习 Meteor，而不去学其他框架呢？拨开 Meteor 的各种功能，我们认为原因只有一个：因为 Meteor 易于学习。
+
+而且，和其他框架不同，使用 Meteor，几小时之内就能开发出一个正常运行的实时网页程序。如果之前做过前端开发，对 JavaScript 已经有所了解，甚至都不用再学习一门新的编程语言。
+
+Meteor 可能就是你要找的理想框架，当然，也可能不是。既然只要几晚或一个周末就能上手，为什么不试试呢？
+
+### 为什么选择这本书？
+
+在过去的几年中，我们一直在开发很多个 Meteor 项目，范围从网站到移动应用，从商业项目到开源项目。
+
+我们学到了很多，但总是不那么容易找到问题的答案。我们不得不从不同来源讲东西拼凑在一起，并且在许多情况下，我们甚至创造了我们自己的解决方案。所以通过这本书，我们想分享所有这些经验教训，并创建了一个简单的一步一步的指导，来引导你从零开始构建一个完整的 Meteor 应用。
+
+我们即将构建的应用是一个简化版的社交新闻网站，类似 [Hacker News](http://news.ycombinator.com) 或 [Reddit](http://reddit.com)，我们称之为 Microscope（借鉴 Meteor 开源应用 [Telescope](http://telesc.pe)），在开发的过程中，我们会解决 构建 Meteor 应用所会遇到的各种要素，例如用户账户、Meteor Collection、路由等等。
+
+### 这本书为谁编写？
+
+我们在写这本书时，目标之一就是要让内容通俗易懂。所以，即使你没有任何 Meteor、Node.js、MVC 框架或服务器端编程经验，都能够读完这本书。
+
+但另一方面，我们也假设你熟悉基本的 JavaScript 语法和概念。但是如果你曾经玩过一些 jQuery 代码或接触过浏览器开发者控制台，你应该是没有问题的。
+
+如果你还不太熟悉 JavaScript，我们建议你在开始阅读本书之前，先阅读一下我们的 [JavaScript primer for Meteor](https://www.discovermeteor.com/blog/javascript-for-meteor/)（英文）。
+
+### 关于作者
+
+如果你想知道我们是谁，为什么要相信我们，这里是两位作者的一些背景介绍。
+
+<%= image "tom-photo.jpg", "portrait" %>
+
+**Tom Coleman** 是 [Percolate 工作室](http://percolatestudio.com/)的一员。Percolate 工作室是一个程序开发商，致力于高品质的产品和用户体验。他也是 [Atmosphere](http://atmosphere.meteor.com/) 包仓库的维护人之一，同时也参与开发了多个 Meteor 开源项目（例如 [Iron Router](https://github.com/EventedMind/iron-router)）。
+
+<%= image "sacha-photo.jpg", "portrait" %>
+
+**Sacha Greif** 是一名产品设计师和网页设计师，为创业项目工作，例如 [Hipmunk](http://www.hipmunk.com/) 和 [RubyMotion](http://rubymotion.com/)。他开发了 [Telescope](http://telesc.pe/) 和 [Sidebar](http://sidebar.io/)，还是 [Folyo](http://folyo.me/) 的创始人。
+
+### 章节和附录
+
+我们希望这本书对 Meteor 初学者和有经验的程序员都有所帮助，因此把内容分成了两类：常规的章节（1-14 章）和附录（带 .5 的序号）。
+
+常规的章节会讲解如何开发程序，尽量保证你能跟着我们的步伐实际操作，只关注开发过程中最重要的步骤，不会太深入细节。
+
+而附录则会深入 Meteor 错综复杂的细节，帮助你更好的理解背后到底发生了什么。
+
+如果你是初学者，第一次阅读完全可以跳过附录，熟悉 Meteor 之后再回过头来阅读。
+
+### 代码提交和线上演示
+
+阅读编程相关的书籍时最怕遇到这种事情，虽然一直跟着书中的步骤，但突然发现代码和示例不一样了，而且程序也不能正常运行。
+
+为了避免这种情况发生，我们特意[在 GitHub 上为 Microscope 建了仓库](https://github.com/DiscoverMeteor/Microscope)。改动一些代码后，会给出指向 git 提交的链接，而且还会链接到该提交对应的线上演示，方便和你自己本地的版本对比。下面一个示例：
+
+<%= commit "11-2", "在头部显示提醒" %>
+
+我们提供的代码提交链接，并不是为了让你使用 `git checkout` 从一个提交跳到另一个提交。自己动手输入程序的代码，学习效果才能更好。
+
+### 一些其他资源
+
+如果想更深入地学习 Meteor 的各项功能，最好的资料就是[官方文档](http://docs.meteor.com/)。
+
+遇到问题我们建议到 [Stack Overflow](http://stackoverflow.com/questions/tagged/meteor) 网站上寻找帮助。如果想获得实时帮助，可以加入 [IRC](https://webchat.freenode.net/) 的 #meteor 频道。
+
+<% note do %>
+
+### 需要了解 Git 吗？
+
+阅读本书虽然不完全要求你熟悉 Git 版本控制，但我们强烈推荐你去学。
+
+如果想快速上手，我们推荐阅读 Nick Farina 撰写的文章《[Git Is Simpler Than You Think](http://nfarina.com/post/9868516270/git-is-simpler)》。
+
+对 Git 初学者，我们推荐使用 [GitHub](http://mac.github.com/) （Mac OS），或 [SourceTree](http://www.sourcetreeapp.com/) (Mac OS & Windows)，这两个软件都是免费的。
+
+<% end %>
+
+### 联系方式
+
+- 如果想和我们联系，可以发送邮件到 [hello@discovermeteor.com](mailto:hello@discovermeteor.com)。
+- 如果发现本书中有错别字或不当之处，请到 [GitHub 上的仓库](https://github.com/DiscoverMeteor/book/issues)中提交。
+- 如果发现 Microscope 的代码有问题，请到 [Microscope 的仓库](https://github.com/DiscoverMeteor/Microscope/issues)中提交。
+- 如果还有其他问题，可以直接在网页的侧栏中留言。

@@ -1,0 +1,485 @@
+---
+title: 创建帖子
+slug: creating-posts
+date: 0007/01/01
+number: 7
+points: 5
+photoUrl: http://www.flickr.com/photos/markezell/9688179085
+photoAuthor: Mark Ezell
+contents: 学习如何在客户端提交一个帖子。|实现一个简单的安全性检查。|对帖子提交页面进行限制访问。|学习在服务端中添加安全性检查的方法。
+paragraphs: 60
+---
+
+我们曾经轻松地通过控制台去使用 `Posts.insert` 来创建帖子并插入到数据库。但我们不可能指望用户去打开控制台来创建一个新的帖子吧？
+
+所以我们需要在用户界面上创建一些表单控件，让用户在我们的 App 上发布一些新的帖子。
+
+### 构建新帖子的提交页面
+
+我们首先为新帖子的提交页面定义一个路由：
+
+~~~js
+Router.configure({
+  layoutTemplate: 'layout',
+  loadingTemplate: 'loading',
+  notFoundTemplate: 'notFound',
+  waitOn: function() { return Meteor.subscribe('posts'); }
+});
+
+Router.route('/', {name: 'postsList'});
+
+Router.route('/posts/:_id', {
+  name: 'postPage',
+  data: function() { return Posts.findOne(this.params._id); }
+});
+
+Router.route('/submit', {name: 'postSubmit'});
+
+Router.onBeforeAction('dataNotFound', {only: 'postPage'});
+~~~
+<%= caption "lib/router.js" %>
+<%= highlight "15" %>
+
+### 在头部（Header）添加一个链接
+
+定义了这条路由后，现在我们可以在头部模板（Header）中添加一个访问我们提交页面的链接：
+
+~~~html
+<template name="header">
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{{pathFor 'postsList'}}">Microscope</a>
+    </div>
+    <div class="collapse navbar-collapse" id="navigation">
+      <ul class="nav navbar-nav">
+        <li><a href="{{pathFor 'postSubmit'}}">Submit Post</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        {{> loginButtons}}
+      </ul>
+    </div>
+  </nav>
+</template>
+~~~
+<%= caption "client/templates/includes/header.html" %>
+<%= highlight "14~16" %>
+
+设置了这个路由就意味着如果用户浏览 `/submit` 的 URL 路径， Meteor 会显示 `postSubmit` 模板。 下面让我们来写这个模板吧：
+
+~~~html
+<template name="postSubmit">
+  <form class="main form">
+    <div class="form-group">
+      <label class="control-label" for="url">URL</label>
+      <div class="controls">
+          <input name="url" id="url" type="text" value="" placeholder="Your URL" class="form-control"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label" for="title">Title</label>
+      <div class="controls">
+          <input name="title" id="title" type="text" value="" placeholder="Name your post" class="form-control"/>
+      </div>
+    </div>
+    <input type="submit" value="Submit" class="btn btn-primary"/>
+  </form>
+</template>
+~~~
+<%= caption "client/templates/posts/post_submit.html" %>
+
+注意：这里有大量的标签样式，只不过都来自于 Twitter Bootstrap。只有表单元素是必不可少的，样式的设置只是让我们的 App 更好看一点。在浏览器中显示：
+
+<%= screenshot "7-1", "帖子提交页面" %>
+
+这是一个简单的表单页面，不需要担心它的提交事件，因为我们会通过 JavaScript 拦截表单的提交事件并更新数据。（但如果你考虑到一旦禁用了 JavaScript 的话， Meteor App 就会完全失效）。
+
+### 创建帖子
+
+让我们将一个事件处理绑定到表单的 `submit` 事件。最好使用 `submit` 事件（而不是按钮的 `click` 事件），因为这会覆盖所有可能的提交方式（比如敲击回车键）。
+
+~~~js
+Template.postSubmit.events({
+  'submit form': function(e) {
+    e.preventDefault();
+
+    var post = {
+      url: $(e.target).find('[name=url]').val(),
+      title: $(e.target).find('[name=title]').val()
+    };
+
+    post._id = Posts.insert(post);
+    Router.go('postPage', post);
+  }
+});
+~~~
+<%= caption "client/templates/posts/post_submit.js" %>
+
+<%= commit "7-1", "添加一个帖子提交页面并把链接放到头部（Header）。" %>
+
+这个函数使用 [jQuery](http://jquery.com) 去获取我们表单字段的值，并填充到一个新的帖子对象。我们需要调用 `event` 的 `preventDefault` 方法来确保浏览器不会再继续尝试提交表单。
+
+最后，我们要跳转到新的帖子页面。 `insert()` 方法把这个对象插入到数据库并返回插入对象的 `_id` 值，路由器的 `go()` 方法将构建一个帖子页面的 URL 提供我们访问。
+
+最终的结果是用户点击提交时，创建一个帖子，然后用户浏览器将立即跳到帖子创建页面。
+
+### 添加一些安全检查
+
+创建帖子这功能看起来都很好，但我们不想让随机浏览的游客都可以这样做：我们希望他们必须登录。首先可以对登出的用户隐藏帖子创建页面的链接。不过，没有登录的用户仍然可以在浏览器控制台中创建一个帖子，这是我们不能允许的。
+
+值得庆幸的是数据安全已经集成在 Meteor 的集合中，只是在默认情况下它是关闭的。这样的设置可以使你在刚开始构建 App 的时候更加轻松。
+
+我们的 App 不再需要这些辅助了，果断扔掉吧！我们去删除 `insecure` 包（恢复数据安全）：
+
+~~~bash
+meteor remove insecure
+~~~
+<%= caption "Terminal 终端" %>
+
+执行以后你会注意到，帖子的提交页面不可用了。这是因为没有了 `insecure` 包，从客户端插入帖子集合已经*不再被允许了*。
+
+我们需要给出一些明确的规则告诉 Meteor ，什么时候才能允许客户插入帖子，否则我们只能从服务端插入。
+
+### 允许帖子插入
+
+首先，为了让我们的提交页面再次可用，我们先展示如何允许从客户端插入数据。事实上，我们最终还会用不同的技术去解决这个问题，但是现在，先做一些简单的处理吧：
+
+~~~js
+Posts = new Mongo.Collection('posts');
+
+Posts.allow({
+  insert: function(userId, doc) {
+    // 只允许登录用户添加帖子
+    return !! userId;
+  }
+});
+~~~
+<%= caption "lib/collections/posts.js" %>
+<%= highlight "3~8" %>
+
+<%= commit "7-2", "移除 insecure 包并允许插入帖子" %>
+
+`Posts.allow` 是告诉 Meteor：这是一些允许客户端去修改帖子集合的条件。上面的代码，等于说“只要客户拥有 `userId` 就允许去插入帖子”。
+
+这个拥有 `userId` 用户的修改会传递到 `allow` 和 `deny` 的方法（如果没有用户登录就返回 `null`），这个判断通常都是准确的。因为用户帐户是绑定到 Meteor 核心里面的，我们可以依靠 `userId` 去判断。
+
+我们可以去验证一下，注销登录并创建一个帖子，你在控制台看到的应该是这样：
+
+<%= screenshot "7-2", "Insert failed: Access denied（插入失败：拒绝访问）" %>
+
+然而，我们仍然需要处理一些问题：
+
+ - 登出后的用户仍然可以访问帖子创建页面。
+ - 帖子并没有以任何方式与用户进行绑定（没有在服务器上的代码去执行这个）。
+ - 允许创建指向相同的 URL 的多个帖子。
+
+让我们来解决这些问题吧！
+
+### 帖子创建页面的可访问性
+
+让我们首先阻止已登出的用户看到帖子创建页面。我们会在路由器中，通过定义一个 **路由 Hook** 。
+
+Hook 在路由过程中进行拦截并可能改变路由器的跳转。你可以把它当作一个保安，检查你的凭据才能让你通过（或者把你带走）。
+
+我们需要做的是检查用户是否登录，如果他们没有登录，呈现出来的是 `accessDenied` 模板而不是 `postSubmit` 模板。 让我们去修改 router.js 文件：
+
+~~~js
+Router.configure({
+  layoutTemplate: 'layout',
+  loadingTemplate: 'loading',
+  notFoundTemplate: 'notFound',
+  waitOn: function() { return Meteor.subscribe('posts'); }
+});
+
+Router.route('/', {name: 'postsList'});
+
+Router.route('/posts/:_id', {
+  name: 'postPage',
+  data: function() { return Posts.findOne(this.params._id); }
+});
+
+Router.route('/submit', {name: 'postSubmit'});
+
+var requireLogin = function() {
+  if (! Meteor.user()) {
+    this.render('accessDenied');
+  } else {
+    this.next();
+  }
+}
+
+Router.onBeforeAction('dataNotFound', {only: 'postPage'});
+Router.onBeforeAction(requireLogin, {only: 'postSubmit'});
+~~~
+<%= caption "lib/router.js" %>
+<%= highlight "17~23,26" %>
+
+我们还要创建拒绝访问模板：
+
+~~~html
+<template name="accessDenied">
+  <div class="access-denied jumbotron">
+    <h2>Access Denied</h2>
+    <p>You can't get here! Please log in.</p>
+  </div>
+</template>
+~~~
+<%= caption "client/templates/includes/access_denied.html" %>
+
+<%= commit "7-3", "当没有登录的时候拒绝访问帖子创建页面" %>
+
+如果你不登录去访问 http://localhost:3000/submit/ ，你将会看到：
+
+<%= screenshot "7-3", "拒绝访问模板" %>
+
+路由器 Hooks 的好处是**响应式**。这意味着当用户登录的时候，我们不需要考虑回调或者其他类似的方法，它就可以马上知道。当用户状态变为已登录的时候，路由器的页面模板立即从 `accessDenied` 变为 `postSubmit`，而我们无需编写任何代码来去控制它。
+
+登录，然后尝试刷新页面。你可能注意到，拒绝访问的页面会短暂地出现在帖子创建页面。这是因为在服务器去检测当前用户之前，Meteor 会尽可能快的去渲染模板。
+
+为了避免这个问题（这是一种常见的问题，你将会看到更多去处理客户端和服务器之间错综复杂的延迟），我们将短暂显示一个加载的画面，腾出足够时间让我们去判断用户是否有权访问。
+
+毕竟在这之前，我们不知道用户是否有正确的登录凭证，而我们也不能直接显示 `accessDenied` 或 `postSubmit` 模板。
+
+所以修改 Hook 去使用我们的加载模板，同时判断 `Meteor.loggingIn()` 是否为真：
+
+~~~js
+//...
+
+var requireLogin = function() {
+  if (! Meteor.user()) {
+    if (Meteor.loggingIn()) {
+      this.render(this.loadingTemplate);
+    } else {
+      this.render('accessDenied');
+    }
+  } else {
+    this.next();
+  }
+}
+
+Router.onBeforeAction('dataNotFound', {only: 'postPage'});
+Router.onBeforeAction(requireLogin, {only: 'postSubmit'});
+~~~
+<%= caption "lib/router.js" %>
+<%= highlight "5~10" %>
+
+<%= commit "7-4", "在等待登录的时候显示一个加载画面" %>
+
+### 隐藏链接
+
+当他们注销登录之后就隐藏这个链接，这是最简单的方法去防止用户试图访问不被授权的页面。我们做到这一点很简单：
+
+~~~html
+//...
+
+<ul class="nav navbar-nav">
+  {{#if currentUser}}<li><a href="{{pathFor 'postSubmit'}}">Submit Post</a></li>{{/if}}
+</ul>
+
+//...
+~~~
+<%= caption "client/templates/includes/header.html" %>
+<%= highlight "3~5" %>
+
+<%= commit "7-5", "只在登录后才显示创建帖子链接" %>
+
+`currentUser` 的 Helper 是通过 `accounts` 包提供给我们的，它相当于是 `Meteor.user()` 的调用。因为它是响应式的，链接将会在你登入或者登出的的时候出现或者消失。
+
+### Meteor 内置方法：更好的抽象和安全
+
+我们让没有登录的用户无法访问帖子创建页面，并且不允许这样的用户通过使用控制台去创建帖子。然而，仍有一些更多的事情我们需要考虑：
+
+- 帖子的时间戳。
+- 确保拥有相同 URL 的帖子不能再次创建。
+- 添加帖子的作者的详细信息（ID 、用户名等）。
+
+你可能会想我们可以把这些事情放到我们的 `submit` 事件中去处理。但是实际上，我们很快就会遇到一系列的问题。
+
+- 对于时间戳，我们并不是总需要依赖用户计算机的时间是否正确。
+- 客户并不知道所有发布到该网站的帖子的 URL 。他们只能知道目前看到的帖子（稍后我们将看看这是如何工作），所以没有办法在每个客户端中确保 URL 是否唯一的。
+- 最后，虽然我们可以在客户端添加用户的详细信息，但是我们不能确保其准确性，因为可能有人会使用浏览器控制台去进行编辑更改。
+
+因为这些问题，最好是保持我们的事件处理方法里面足够简单，如果我们所做的事情超过最基本的插入或更新数据集合，那么可以使用 Meteor 的内置方法 。
+
+Meteor 内置方法是一种服务器端方法提供给客户端调用。其实我们对它并不陌生--事实上在后台， `Collection` 的 `insert`、`update` 和 `remove` 都属于 Meteor 内置方法。下面看看我们如何自己来创建。
+
+让我们回到 `post_submit.js` 文件，不再是直接插入到 `Posts` 集合，我们将调用一个名为 `postInsert` 的内置方法：
+
+~~~js
+Template.postSubmit.events({
+  'submit form': function(e) {
+    e.preventDefault();
+
+    var post = {
+      url: $(e.target).find('[name=url]').val(),
+      title: $(e.target).find('[name=title]').val()
+    };
+
+    Meteor.call('postInsert', post, function(error, result) {
+      // 显示错误信息并退出
+      if (error)
+        return alert(error.reason);
+
+      Router.go('postPage', {_id: result._id});
+    });
+  }
+});
+~~~
+<%= caption "client/templates/posts/post_submit.js" %>
+<%= highlight "10~16" %>
+
+`Meteor.call` 方法通过第一个参数来调用其方法。你可以为调用方法提供参数（在这种情况下，由表单数据来构建的 `post` 对象），最后加上一个回调，它将在服务器的方法完成后执行。
+
+Meteor 方法回调总会有两个参数，`error` 和 `result`。如果 `error` 参数由于某种原因存在的话，我们会警告用户（使用 `return` 来终止回调）。如果正常运行的话，我们将用户转到刚刚创建好的帖子评论页面。
+
+### 安全检查
+
+我们趁现在这个机会添加 [`audit-argument-checks`](http://docs.meteor.com/#/full/auditargumentchecks) 包来增加一些安全性。
+
+这个包让你根据预定义的模式检查任何 JavaScript 对象。对于我们来说，我们使用它来检查调用方法的用户是否登陆（通过确认 `Meteor.userId()` 是否是个 `String` 字符串），然后 `postAttributes` 对象是否包含 `title` 和` url` 字符串，来保证我们不会添加任意数据到数据库中。
+
+首先让我们定义 `postInsert` 方法，在我们的 `collections/post.js` 文件中。从 `posts.js` 文件中删除 `allow()` 代码块，因为 Meteor 方法会绕过它们。
+
+然后我们 `extend` `postAttributes` 对象另外三个属性：用户的 `_id` 和 `username`，还有帖子的 `submitted` 时间戳，在将整个数据插入数据库之前，并返回给用户 `_id` 值（换句话说，在 JavaScript 对象里的 原始 caller 方法）
+
+~~~js
+Posts = new Mongo.Collection('posts');
+
+Meteor.methods({
+  postInsert: function(postAttributes) {
+    check(Meteor.userId(), String);
+    check(postAttributes, {
+      title: String,
+      url: String
+    });
+
+    var user = Meteor.user();
+    var post = _.extend(postAttributes, {
+      userId: user._id,
+      author: user.username,
+      submitted: new Date()
+    });
+
+    var postId = Posts.insert(post);
+
+    return {
+      _id: postId
+    };
+  }
+});
+~~~
+<%= caption "lib/collections/posts.js" %>
+<%= highlight "3~24" %>
+
+注意的是 `_.extend()` 方法来自于 [Underscore](http://underscorejs.org) 库，作用是将一个对象的属性传递给另一个对象。
+
+<%= commit "7-6", "使用一个内置方法来提交帖子。" %>
+
+<% note do %>
+
+### 再见 Allow/Deny
+
+因为 Meteor Methods 是在服务器上执行，所以 Meteor 假设它们是可信任的。这样的话，Meteor 方法就会绕过任何 allow/deny 回调。
+
+如果你真的想在*服务器端*每次 `insert`、`update` 或 `remove` 之前，运行一些代码的话，我们建议你查看 [collection-hooks](https://github.com/matb33/meteor-collection-hooks)  代码包的相关信息。
+
+<% end %>
+
+### 防止重复
+
+我们在完成这个方法之前还要在添加一项检查。如果之前的帖子拥有了同样的 URL，我们不会再次添加这个链接，反而会引导用户到已存在的帖子上。
+
+~~~js
+Meteor.methods({
+  postInsert: function(postAttributes) {
+    check(this.userId, String);
+    check(postAttributes, {
+      title: String,
+      url: String
+    });
+
+    var postWithSameLink = Posts.findOne({url: postAttributes.url});
+    if (postWithSameLink) {
+      return {
+        postExists: true,
+        _id: postWithSameLink._id
+      }
+    }
+
+    var user = Meteor.user();
+    var post = _.extend(postAttributes, {
+      userId: user._id,
+      author: user.username,
+      submitted: new Date()
+    });
+
+    var postId = Posts.insert(post);
+
+    return {
+      _id: postId
+    };
+  }
+});
+~~~
+<%= caption "lib/collections/posts.js" %>
+<%= highlight "9~15" %>
+
+我们在数据库中搜寻是否存在相同的 URL。如果找到，我们 `return` 返回那帖子的 `_id` 和 `postExists: true` 来让用户知道这个特别的情况。
+
+由于我们调用了一个 `return`，方法就会到此停止，而不会执行 `insert` 声明，因此优雅地防止了任何重复。
+
+剩下的就是用 `postExists` 信息通过我们客户端的事件 helper 来显示警告信息：
+
+~~~js
+Template.postSubmit.events({
+  'submit form': function(e) {
+    e.preventDefault();
+
+    var post = {
+      url: $(e.target).find('[name=url]').val(),
+      title: $(e.target).find('[name=title]').val()
+    };
+
+    Meteor.call('postInsert', post, function(error, result) {
+      // 向用户显示错误信息并终止
+      if (error)
+        return alert(error.reason);
+
+      // 显示结果，跳转页面
+      if (result.postExists)
+        alert('This link has already been posted（该链接已经存在）');
+
+      Router.go('postPage', {_id: result._id});
+    });
+  }
+});
+~~~
+<%= caption "client/templates/posts/post_submit.js" %>
+<%= highlight "15~17" %>
+
+<%= commit "7-7", "强制帖子 URL 的唯一性。" %>
+
+### 帖子排序
+
+现在我们已经在所有的帖子中添加了日期，确保可以使用这个属性去进行帖子的分类。这样，我们就可以使用 Mongo 数据库的 `sort` 运算方法，根据这个字段去把对象进行排序，并且标识它们是升序还是降序。
+
+~~~js
+Template.postsList.helpers({
+  posts: function() {
+    return Posts.find({}, {sort: {submitted: -1}});
+  }
+});
+~~~
+<%= caption "client/templates/posts/posts_list.js" %>
+<%= highlight "3" %>
+
+<%= commit "7-8", "帖子通过时间戳进行排序。" %>
+
+花了一点功夫，我们终于有了一个用户界面，让用户安全地在我们的 App 中输入内容！
+
+但任何一个 App 如果允许用户去创建内容，同时也需要给他们一个方式来编辑或删除它。这就是下一章将会说到的。
