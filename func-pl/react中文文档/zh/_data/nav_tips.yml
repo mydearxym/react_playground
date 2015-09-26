@@ -1,0 +1,40 @@
+- title: Tips
+  items:
+  - id: introduction
+    title: 内容简介
+  - id: inline-styles
+    title: 内联样式
+  - id: if-else-in-JSX
+    title: JSX 中的 If-Else 
+  - id: self-closing-tag
+    title: 自闭合标签
+  - id: maximum-number-of-jsx-root-nodes
+    title: JSX 根节点的最大数量
+  - id: style-props-value-px
+    title: 在样式props中快速制定像素值
+  - id: children-props-type
+    title: 子props的类型
+  - id: controlled-input-null-value
+    title: 值为 null 的 Controlled Input
+  - id: componentWillReceiveProps-not-triggered-after-mounting
+    title: Mounting 后 componentWillReceiveProps 未被触发
+  - id: props-in-getInitialState-as-anti-pattern
+    title: getInitialState 里的 Props 是一个反模式
+  - id: dom-event-listeners
+    title: 组件的 DOM 事件监听
+  - id: initial-ajax
+    title: 通过 AJAX 加载初始数据
+  - id: false-in-jsx
+    title: JSX 的 false 处理
+  - id: communicate-between-components
+    title: 组件间的通信
+  - id: expose-component-functions
+    title: Expose Component Functions
+  - id: references-to-components
+    title: 组件的引用
+  - id: children-undefined
+    title: this.props.children undefined
+  - id: use-react-with-other-libraries
+    title: 与其他类库并行使用React
+  - id: dangerously-set-inner-html
+    title: Dangerously Set innerHTML

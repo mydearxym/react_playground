@@ -1,0 +1,9 @@
+NodeClub listening on port 3000
+God bless love....
+You can debug your app with http://localhost:3000
+
+
+
+Started 2015-09-26T02:15:04.699Z GET / 127.0.0.1
+  Render view index [32m(14ms)[39m
+Completed 200 [32m(36ms)[39m

@@ -1,0 +1,1354 @@
+NodeClub listening on port 3000
+God bless love....
+You can debug your app with http://localhost:3000
+
+
+
+Started 2015-09-26T02:09:29.816Z GET /api/v1/messages?accesstoken=53354904-6b48-4da2-947b-37bb883e653e 127.0.0.1
+Completed 500 [32m(15ms)[39m
+
+
+Started 2015-09-26T02:09:29.837Z GET /api/v1/message/count?accesstoken=53354904-6b48-4da2-947b-37bb883e653e 127.0.0.1
+Completed 500 [32m(7ms)[39m
+
+
+Started 2015-09-26T02:09:29.847Z POST /api/v1/message/mark_all 127.0.0.1
+Completed 500 [32m(13ms)[39m
+
+
+Started 2015-09-26T02:09:29.866Z POST /api/v1/topic/5605fe597111e4914da160b7/replies 127.0.0.1
+Completed 500 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:09:29.873Z POST /api/v1/topic/5605fe597111e4914da160b7/replies 127.0.0.1
+Completed 500 [32m(8ms)[39m
+
+
+Started 2015-09-26T02:09:29.883Z POST /api/v1/topic/5605fe597111e4914da160b7not_found/replies 127.0.0.1
+Completed 500 [32m(3ms)[39m
+
+
+Started 2015-09-26T02:09:29.894Z POST /api/v1/topic/5605fe597111e4914da160b7/replies 127.0.0.1
+Completed 500 [32m(3ms)[39m
+
+
+Started 2015-09-26T02:09:29.902Z POST /api/v1/reply/undefined/ups 127.0.0.1
+Completed 500 [32m(6ms)[39m
+
+
+Started 2015-09-26T02:09:29.914Z POST /api/v1/reply/undefined/ups 127.0.0.1
+Completed 500 [32m(4ms)[39m
+
+
+Started 2015-09-26T02:09:29.920Z POST /api/v1/reply/undefinednot_found/ups 127.0.0.1
+Completed 500 [32m(7ms)[39m
+
+
+Started 2015-09-26T02:09:30.175Z POST /api/v1/accesstoken 127.0.0.1
+Completed 500 [32m(4ms)[39m
+
+
+Started 2015-09-26T02:09:30.182Z POST /api/v1/accesstoken 127.0.0.1
+Completed 500 [32m(3ms)[39m
+
+
+Started 2015-09-26T02:09:30.448Z GET /api/v1/topics 127.0.0.1
+Completed 500 [32m(6ms)[39m
+
+
+Started 2015-09-26T02:09:30.456Z GET /api/v1/topics?limit=2 127.0.0.1
+Completed 500 [32m(9ms)[39m
+
+
+Started 2015-09-26T02:09:30.469Z GET /api/v1/topic/5605fe5a7111e4914da160ba 127.0.0.1
+Completed 500 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:09:30.477Z POST /api/v1/topics 127.0.0.1
+Completed 500 [32m(3ms)[39m
+
+
+Started 2015-09-26T02:09:30.483Z POST /api/v1/topic/collect 127.0.0.1
+Completed 500 [32m(4ms)[39m
+
+
+Started 2015-09-26T02:09:30.489Z POST /api/v1/topic/collect 127.0.0.1
+Completed 500 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:09:30.498Z POST /api/v1/topic/de_collect 127.0.0.1
+Completed 500 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:09:30.505Z POST /api/v1/topic/de_collect 127.0.0.1
+Completed 500 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:09:30.757Z GET /api/v1/user/alsotang1443233370511_6674 127.0.0.1
+Completed 500 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:09:30.765Z GET / 127.0.0.1
+Completed 500 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:09:40.813Z GET /my/messages 127.0.0.1
+Completed 500 [32m(6ms)[39m
+
+
+Started 2015-09-26T02:09:40.826Z GET /my/messages 127.0.0.1
+Completed 500 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:09:41.853Z GET /auth/github 127.0.0.1
+Completed 500 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:09:41.861Z GET /auth/github/test_callback?code=123456 127.0.0.1
+Completed 500 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:09:41.869Z GET /auth/github/test_callback?code=123456 127.0.0.1
+Completed 500 [32m(7ms)[39m
+
+
+Started 2015-09-26T02:09:41.877Z GET /auth/github/new 127.0.0.1
+Completed 500 [32m(6ms)[39m
+
+
+Started 2015-09-26T02:09:41.892Z POST /auth/github/test_create 127.0.0.1
+Completed 500 [32m(3ms)[39m
+
+
+Started 2015-09-26T02:09:41.898Z POST /auth/github/test_create 127.0.0.1
+Completed 500 [32m(4ms)[39m
+
+
+Started 2015-09-26T02:09:42.147Z POST /auth/github/test_create 127.0.0.1
+Completed 500 [32m(3ms)[39m
+
+
+Started 2015-09-26T02:09:42.156Z GET /my/messages 127.0.0.1
+Completed 500 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:09:42.164Z GET /my/messages 127.0.0.1
+Completed 500 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:09:42.174Z POST /5605fe597111e4914da160b3/reply 127.0.0.1
+Completed 500 [32m(4ms)[39m
+
+
+Started 2015-09-26T02:09:42.179Z POST /5605fe597111e4914da160b3/reply 127.0.0.1
+Completed 500 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:09:42.186Z POST /5605fe597111e4914da160b3/reply 127.0.0.1
+Completed 500 [32m(4ms)[39m
+
+
+Started 2015-09-26T02:09:42.192Z GET /reply/undefined/edit 127.0.0.1
+Completed 500 [32m(9ms)[39m
+
+
+Started 2015-09-26T02:09:42.203Z GET /reply/undefined/edit 127.0.0.1
+Completed 500 [32m(6ms)[39m
+
+
+Started 2015-09-26T02:09:42.214Z POST /reply/undefined/edit 127.0.0.1
+Completed 500 [32m(8ms)[39m
+NodeClub listening on port 3000
+God bless love....
+You can debug your app with http://localhost:3000
+
+
+
+Started 2015-09-26T02:11:07.980Z GET /api/v1/messages?accesstoken=9811371f-8085-4e51-ba56-5126b25a8640 127.0.0.1
+Completed 500 [32m(15ms)[39m
+
+
+Started 2015-09-26T02:11:08.001Z GET /api/v1/message/count?accesstoken=9811371f-8085-4e51-ba56-5126b25a8640 127.0.0.1
+Completed 500 [32m(6ms)[39m
+
+
+Started 2015-09-26T02:11:08.011Z POST /api/v1/message/mark_all 127.0.0.1
+Completed 500 [32m(11ms)[39m
+
+
+Started 2015-09-26T02:11:08.029Z POST /api/v1/topic/5605febc0786b9464f587266/replies 127.0.0.1
+Completed 500 [32m(4ms)[39m
+
+
+Started 2015-09-26T02:11:08.036Z POST /api/v1/topic/5605febc0786b9464f587266/replies 127.0.0.1
+Completed 500 [32m(4ms)[39m
+
+
+Started 2015-09-26T02:11:08.046Z POST /api/v1/topic/5605febc0786b9464f587266not_found/replies 127.0.0.1
+Completed 500 [32m(3ms)[39m
+
+
+Started 2015-09-26T02:11:08.056Z POST /api/v1/topic/5605febc0786b9464f587266/replies 127.0.0.1
+Completed 500 [32m(4ms)[39m
+
+
+Started 2015-09-26T02:11:08.062Z POST /api/v1/reply/undefined/ups 127.0.0.1
+Completed 500 [32m(6ms)[39m
+
+
+Started 2015-09-26T02:11:08.076Z POST /api/v1/reply/undefined/ups 127.0.0.1
+Completed 500 [32m(4ms)[39m
+
+
+Started 2015-09-26T02:11:08.082Z POST /api/v1/reply/undefinednot_found/ups 127.0.0.1
+Completed 500 [32m(4ms)[39m
+
+
+Started 2015-09-26T02:11:08.339Z POST /api/v1/accesstoken 127.0.0.1
+Completed 500 [32m(3ms)[39m
+
+
+Started 2015-09-26T02:11:08.345Z POST /api/v1/accesstoken 127.0.0.1
+Completed 500 [32m(7ms)[39m
+
+
+Started 2015-09-26T02:11:08.619Z GET /api/v1/topics 127.0.0.1
+Completed 500 [32m(8ms)[39m
+
+
+Started 2015-09-26T02:11:08.629Z GET /api/v1/topics?limit=2 127.0.0.1
+Completed 500 [32m(7ms)[39m
+
+
+Started 2015-09-26T02:11:08.641Z GET /api/v1/topic/5605febc0786b9464f587269 127.0.0.1
+Completed 500 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:11:08.649Z POST /api/v1/topics 127.0.0.1
+Completed 500 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:11:08.656Z POST /api/v1/topic/collect 127.0.0.1
+Completed 500 [32m(6ms)[39m
+
+
+Started 2015-09-26T02:11:08.665Z POST /api/v1/topic/collect 127.0.0.1
+Completed 500 [32m(4ms)[39m
+
+
+Started 2015-09-26T02:11:08.671Z POST /api/v1/topic/de_collect 127.0.0.1
+Completed 500 [32m(4ms)[39m
+
+
+Started 2015-09-26T02:11:08.678Z POST /api/v1/topic/de_collect 127.0.0.1
+Completed 500 [32m(4ms)[39m
+
+
+Started 2015-09-26T02:11:08.933Z GET /api/v1/user/alsotang1443233468684_6086 127.0.0.1
+Completed 500 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:11:08.941Z GET / 127.0.0.1
+Completed 500 [32m(6ms)[39m
+
+
+Started 2015-09-26T02:11:18.976Z GET /my/messages 127.0.0.1
+Completed 500 [32m(6ms)[39m
+
+
+Started 2015-09-26T02:11:18.989Z GET /my/messages 127.0.0.1
+Completed 500 [32m(10ms)[39m
+
+
+Started 2015-09-26T02:11:20.021Z GET /auth/github 127.0.0.1
+Completed 500 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:11:20.029Z GET /auth/github/test_callback?code=123456 127.0.0.1
+Completed 500 [32m(6ms)[39m
+
+
+Started 2015-09-26T02:11:20.039Z GET /auth/github/test_callback?code=123456 127.0.0.1
+Completed 500 [32m(6ms)[39m
+
+
+Started 2015-09-26T02:11:20.047Z GET /auth/github/new 127.0.0.1
+Completed 500 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:11:20.059Z POST /auth/github/test_create 127.0.0.1
+Completed 500 [32m(4ms)[39m
+
+
+Started 2015-09-26T02:11:20.066Z POST /auth/github/test_create 127.0.0.1
+Completed 500 [32m(4ms)[39m
+
+
+Started 2015-09-26T02:11:20.336Z POST /auth/github/test_create 127.0.0.1
+Completed 500 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:11:20.345Z GET /my/messages 127.0.0.1
+Completed 500 [32m(20ms)[39m
+
+
+Started 2015-09-26T02:11:20.368Z GET /my/messages 127.0.0.1
+Completed 500 [32m(9ms)[39m
+
+
+Started 2015-09-26T02:11:20.388Z POST /5605febb0786b9464f587262/reply 127.0.0.1
+Completed 500 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:11:20.395Z POST /5605febb0786b9464f587262/reply 127.0.0.1
+Completed 500 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:11:20.401Z POST /5605febb0786b9464f587262/reply 127.0.0.1
+Completed 500 [32m(10ms)[39m
+
+
+Started 2015-09-26T02:11:20.415Z GET /reply/undefined/edit 127.0.0.1
+Completed 500 [32m(16ms)[39m
+
+
+Started 2015-09-26T02:11:20.437Z GET /reply/undefined/edit 127.0.0.1
+Completed 500 [32m(8ms)[39m
+
+
+Started 2015-09-26T02:11:20.448Z POST /reply/undefined/edit 127.0.0.1
+Completed 500 [32m(5ms)[39m
+NodeClub listening on port 3000
+God bless love....
+You can debug your app with http://localhost:3000
+
+
+
+Started 2015-09-26T02:13:11.832Z GET /api/v1/messages?accesstoken=c377dfc9-4954-4950-a85c-29c3631a72c8 127.0.0.1
+Completed 200 [32m(20ms)[39m
+
+
+Started 2015-09-26T02:13:11.860Z GET /api/v1/message/count?accesstoken=c377dfc9-4954-4950-a85c-29c3631a72c8 127.0.0.1
+Completed 200 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:13:11.868Z POST /api/v1/message/mark_all 127.0.0.1
+Completed 200 [32m(17ms)[39m
+
+
+Started 2015-09-26T02:13:11.891Z POST /api/v1/message/mark_all 127.0.0.1
+Completed 200 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:13:11.903Z POST /api/v1/topic/5605ff374fba2d8651c36cdc/replies 127.0.0.1
+Completed 200 [32m(34ms)[39m
+
+
+Started 2015-09-26T02:13:11.940Z POST /api/v1/topic/5605ff374fba2d8651c36cdc/replies 127.0.0.1
+Completed 200 [32m(34ms)[39m
+
+
+Started 2015-09-26T02:13:11.976Z POST /api/v1/topic/5605ff374fba2d8651c36cdcnot_found/replies 127.0.0.1
+Completed 500 [32m(10ms)[39m
+
+
+Started 2015-09-26T02:13:11.992Z POST /api/v1/topic/5605ff374fba2d8651c36cdc/replies 127.0.0.1
+Completed 403 [32m(7ms)[39m
+
+
+Started 2015-09-26T02:13:12.003Z POST /api/v1/reply/5605ff374fba2d8651c36cdd/ups 127.0.0.1
+Completed 200 [32m(20ms)[39m
+
+
+Started 2015-09-26T02:13:12.025Z POST /api/v1/reply/5605ff374fba2d8651c36cdd/ups 127.0.0.1
+Completed 200 [32m(11ms)[39m
+
+
+Started 2015-09-26T02:13:12.039Z POST /api/v1/reply/5605ff374fba2d8651c36cddnot_found/ups 127.0.0.1
+Completed 500 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:13:12.286Z POST /api/v1/accesstoken 127.0.0.1
+Completed 200 [32m(3ms)[39m
+
+
+Started 2015-09-26T02:13:12.291Z POST /api/v1/accesstoken 127.0.0.1
+Completed 403 [32m(1ms)[39m
+
+
+Started 2015-09-26T02:13:12.555Z GET /api/v1/topics 127.0.0.1
+Completed 200 [32m(99ms)[39m
+
+
+Started 2015-09-26T02:13:12.656Z GET /api/v1/topics?limit=2 127.0.0.1
+Completed 200 [32m(7ms)[39m
+
+
+Started 2015-09-26T02:13:12.665Z GET /api/v1/topic/5605ff384fba2d8651c36ce1 127.0.0.1
+Completed 200 [32m(9ms)[39m
+
+
+Started 2015-09-26T02:13:12.676Z POST /api/v1/topics 127.0.0.1
+Completed 200 [32m(18ms)[39m
+
+
+Started 2015-09-26T02:13:12.696Z POST /api/v1/topic/collect 127.0.0.1
+Completed 200 [32m(21ms)[39m
+
+
+Started 2015-09-26T02:13:12.720Z POST /api/v1/topic/collect 127.0.0.1
+Completed 500 [32m(6ms)[39m
+
+
+Started 2015-09-26T02:13:12.728Z POST /api/v1/topic/de_collect 127.0.0.1
+Completed 200 [32m(15ms)[39m
+
+
+Started 2015-09-26T02:13:12.748Z POST /api/v1/topic/de_collect 127.0.0.1
+Completed 500 [32m(10ms)[39m
+
+
+Started 2015-09-26T02:13:12.996Z GET /api/v1/user/alsotang1443233592760_8890 127.0.0.1
+Completed 200 [32m(8ms)[39m
+
+
+Started 2015-09-26T02:13:13.007Z GET / 127.0.0.1
+  Render view index [32m(50ms)[39m
+Completed 200 [32m(120ms)[39m
+
+
+Started 2015-09-26T02:13:14.661Z GET /my/messages 127.0.0.1
+  Render view message/index [32m(5ms)[39m
+Completed 200 [32m(25ms)[39m
+
+
+Started 2015-09-26T02:13:14.698Z GET /my/messages 127.0.0.1
+  Render view message/index [32m(6ms)[39m
+Completed 200 [32m(40ms)[39m
+
+
+Started 2015-09-26T02:13:15.750Z GET /auth/github 127.0.0.1
+Completed 302 [32m(12ms)[39m
+
+
+Started 2015-09-26T02:13:15.765Z GET /auth/github/test_callback?code=123456 127.0.0.1
+Completed 302 [32m(2ms)[39m
+
+
+Started 2015-09-26T02:13:15.770Z GET /auth/github/test_callback?code=123456 127.0.0.1
+Completed 302 [32m(3ms)[39m
+
+
+Started 2015-09-26T02:13:15.776Z GET /auth/github/new 127.0.0.1
+  Render view sign/new_oauth [32m(4ms)[39m
+Completed 200 [32m(4ms)[39m
+
+
+Started 2015-09-26T02:13:15.788Z POST /auth/github/test_create 127.0.0.1
+Completed 302 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:13:15.796Z POST /auth/github/test_create 127.0.0.1
+Completed 500 [32m(9ms)[39m
+
+
+Started 2015-09-26T02:13:16.053Z POST /auth/github/test_create 127.0.0.1
+Completed 302 [32m(240ms)[39m
+
+
+Started 2015-09-26T02:13:16.297Z GET /my/messages 127.0.0.1
+Completed 403 [32m(3ms)[39m
+
+
+Started 2015-09-26T02:13:16.302Z GET /my/messages 127.0.0.1
+  Render view message/index [32m(5ms)[39m
+Completed 200 [32m(27ms)[39m
+
+
+Started 2015-09-26T02:13:16.333Z POST /5605ff374fba2d8651c36cd8/reply 127.0.0.1
+Completed 302 [32m(37ms)[39m
+
+
+Started 2015-09-26T02:13:16.377Z POST /5605ff374fba2d8651c36cd8/reply 127.0.0.1
+  Render view notify/notify [32m(7ms)[39m
+Completed 422 [32m(12ms)[39m
+
+
+Started 2015-09-26T02:13:16.396Z POST /5605ff374fba2d8651c36cd8/reply 127.0.0.1
+Completed 403 [32m(2ms)[39m
+
+
+Started 2015-09-26T02:13:16.400Z GET /reply/5605ff3c4fba2d8651c36ceb/edit 127.0.0.1
+  Render view notify/notify [32m(8ms)[39m
+Completed 403 [32m(17ms)[39m
+
+
+Started 2015-09-26T02:13:16.421Z GET /reply/5605ff3c4fba2d8651c36ceb/edit 127.0.0.1
+  Render view reply/edit [32m(8ms)[39m
+Completed 200 [32m(16ms)[39m
+
+
+Started 2015-09-26T02:13:16.439Z POST /reply/5605ff3c4fba2d8651c36ceb/edit 127.0.0.1
+Completed 302 [32m(10ms)[39m
+
+
+Started 2015-09-26T02:13:16.456Z POST /reply/5605ff3c4fba2d8651c36ceb/up 127.0.0.1
+Completed 200 [32m(17ms)[39m
+
+
+Started 2015-09-26T02:13:16.476Z POST /reply/5605ff3c4fba2d8651c36ceb/up 127.0.0.1
+Completed 200 [32m(13ms)[39m
+
+
+Started 2015-09-26T02:13:16.491Z POST /reply/5605ff3c4fba2d8651c36ceb/delete 127.0.0.1
+Completed 403 [32m(1ms)[39m
+
+
+Started 2015-09-26T02:13:16.494Z POST /reply/5605ff3c4fba2d8651c36ceb/delete 127.0.0.1
+Completed 200 [32m(14ms)[39m
+
+
+Started 2015-09-26T02:13:16.522Z GET /rss 127.0.0.1
+Completed 200 [32m(97ms)[39m
+
+
+Started 2015-09-26T02:13:16.622Z GET /rss 127.0.0.1
+Completed 404 [32m(1ms)[39m
+
+
+Started 2015-09-26T02:13:16.627Z GET /rss 127.0.0.1
+Completed 500 [32m(3ms)[39m
+
+
+Started 2015-09-26T02:13:16.632Z GET /search?q=node%20%E4%B8%AD%E6%96%87 127.0.0.1
+Completed 302 [32m(2ms)[39m
+
+
+Started 2015-09-26T02:13:16.637Z GET /signup 127.0.0.1
+  Render view sign/signup [32m(4ms)[39m
+Completed 200 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:13:16.645Z GET /signup_github 127.0.0.1
+Completed 302 [32m(2ms)[39m
+
+
+Started 2015-09-26T02:13:16.650Z POST /signup 127.0.0.1
+  Render view sign/signup [32m(3ms)[39m
+Completed 200 [32m(254ms)[39m
+
+
+Started 2015-09-26T02:13:16.908Z POST /signup 127.0.0.1
+  Render view sign/signup [32m(4ms)[39m
+Completed 422 [32m(4ms)[39m
+
+
+Started 2015-09-26T02:13:16.915Z POST /signup 127.0.0.1
+  Render view sign/signup [32m(4ms)[39m
+Completed 422 [32m(10ms)[39m
+
+
+Started 2015-09-26T02:13:16.927Z GET /signin 127.0.0.1
+  Render view sign/signin [32m(4ms)[39m
+Completed 200 [32m(6ms)[39m
+
+
+Started 2015-09-26T02:13:16.937Z POST /signin 127.0.0.1
+  Render view sign/signin [32m(20ms)[39m
+Completed 422 [32m(22ms)[39m
+
+
+Started 2015-09-26T02:13:16.965Z POST /signin 127.0.0.1
+  Render view sign/signin [32m(2ms)[39m
+Completed 403 [32m(241ms)[39m
+
+
+Started 2015-09-26T02:13:17.208Z POST /signout 127.0.0.1
+Completed 302 [32m(1ms)[39m
+
+
+Started 2015-09-26T02:13:17.213Z GET /active_account?key=e1b560753b5959c5ce6bcdca8cb3601a&name=testuser1443233590768 127.0.0.1
+  Render view notify/notify [32m(2ms)[39m
+Completed 200 [32m(7ms)[39m
+
+
+Started 2015-09-26T02:13:17.222Z POST /signin 127.0.0.1
+Completed 302 [32m(255ms)[39m
+
+
+Started 2015-09-26T02:13:17.479Z GET /search_pass 127.0.0.1
+  Render view sign/search_pass [32m(3ms)[39m
+Completed 200 [32m(4ms)[39m
+
+
+Started 2015-09-26T02:13:17.485Z POST /search_pass 127.0.0.1
+  Render view notify/notify [32m(2ms)[39m
+Completed 200 [32m(8ms)[39m
+
+
+Started 2015-09-26T02:13:17.497Z GET /reset_pass?key=433b8502-6d98-4053-9c56-02fa6a570da7&name=testuser1443233590768 127.0.0.1
+  Render view sign/reset [32m(2ms)[39m
+Completed 200 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:13:17.504Z GET /reset_pass?key=wrong%20key&name=testuser1443233590768 127.0.0.1
+  Render view notify/notify [32m(3ms)[39m
+Completed 403 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:13:17.511Z POST /reset_pass 127.0.0.1
+  Render view notify/notify [32m(3ms)[39m
+Completed 200 [32m(256ms)[39m
+
+
+Started 2015-09-26T02:13:17.769Z GET / 127.0.0.1
+  Render view index [32m(30ms)[39m
+Completed 200 [32m(83ms)[39m
+
+
+Started 2015-09-26T02:13:17.855Z GET /?page=-1 127.0.0.1
+  Render view index [32m(28ms)[39m
+Completed 200 [32m(82ms)[39m
+
+
+Started 2015-09-26T02:13:17.942Z GET /sitemap.xml 127.0.0.1
+Completed 200 [32m(9ms)[39m
+
+
+Started 2015-09-26T02:13:17.952Z GET /app/download 127.0.0.1
+Completed 302 [32m(2ms)[39m
+
+
+Started 2015-09-26T02:13:17.956Z GET /about 127.0.0.1
+  Render view static/about [32m(11ms)[39m
+Completed 200 [32m(13ms)[39m
+
+
+Started 2015-09-26T02:13:17.971Z GET /faq 127.0.0.1
+  Render view static/faq [32m(3ms)[39m
+Completed 200 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:13:17.979Z GET /getstart 127.0.0.1
+  Render view static/getstart [32m(7ms)[39m
+Completed 200 [32m(9ms)[39m
+
+
+Started 2015-09-26T02:13:17.989Z GET /robots.txt 127.0.0.1
+Completed 200 [32m(1ms)[39m
+
+
+Started 2015-09-26T02:13:17.994Z GET /topic/5605ff374fba2d8651c36cd8 127.0.0.1
+  Render view topic/index [32m(9ms)[39m
+Completed 200 [32m(43ms)[39m
+
+
+Started 2015-09-26T02:13:18.041Z GET /topic/5605ff374fba2d8651c36cd8 127.0.0.1
+  Render view topic/index [32m(13ms)[39m
+Completed 200 [32m(53ms)[39m
+
+
+Started 2015-09-26T02:13:18.096Z GET /topic/create 127.0.0.1
+  Render view topic/edit [32m(4ms)[39m
+Completed 200 [32m(6ms)[39m
+
+
+Started 2015-09-26T02:13:18.104Z POST /topic/create 127.0.0.1
+  Render view topic/edit [32m(4ms)[39m
+Completed 422 [32m(7ms)[39m
+
+
+Started 2015-09-26T02:13:18.116Z POST /topic/create 127.0.0.1
+  Render view topic/edit [32m(3ms)[39m
+Completed 422 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:13:18.123Z POST /topic/create 127.0.0.1
+  Render view topic/edit [32m(4ms)[39m
+Completed 422 [32m(9ms)[39m
+
+
+Started 2015-09-26T02:13:18.135Z POST /topic/create 127.0.0.1
+Completed 302 [32m(14ms)[39m
+
+
+Started 2015-09-26T02:13:18.151Z GET /topic/5605ff374fba2d8651c36cd8/edit 127.0.0.1
+  Render view topic/edit [32m(4ms)[39m
+Completed 200 [32m(15ms)[39m
+
+
+Started 2015-09-26T02:13:18.171Z POST /topic/5605ff374fba2d8651c36cd8/edit 127.0.0.1
+Completed 302 [32m(14ms)[39m
+
+
+Started 2015-09-26T02:13:18.193Z POST /topic/5605ff3e4fba2d8651c36cee/delete 127.0.0.1
+Completed 403 [32m(8ms)[39m
+
+
+Started 2015-09-26T02:13:18.203Z POST /topic/5605ff3e4fba2d8651c36cee/delete 127.0.0.1
+Completed 200 [32m(6ms)[39m
+
+
+Started 2015-09-26T02:13:18.213Z POST /topic/5605ff374fba2d8651c36cd8/top 127.0.0.1
+  Render view notify/notify [32m(11ms)[39m
+Completed 200 [32m(24ms)[39m
+
+
+Started 2015-09-26T02:13:18.241Z POST /topic/5605ff374fba2d8651c36cd8/top 127.0.0.1
+  Render view notify/notify [32m(3ms)[39m
+Completed 200 [32m(12ms)[39m
+
+
+Started 2015-09-26T02:13:18.255Z POST /topic/5605ff374fba2d8651c36cd8/good 127.0.0.1
+  Render view notify/notify [32m(6ms)[39m
+Completed 200 [32m(15ms)[39m
+
+
+Started 2015-09-26T02:13:18.273Z POST /topic/5605ff374fba2d8651c36cd8/good 127.0.0.1
+  Render view notify/notify [32m(3ms)[39m
+Completed 200 [32m(11ms)[39m
+
+
+Started 2015-09-26T02:13:18.289Z POST /topic/collect 127.0.0.1
+Completed 200 [32m(25ms)[39m
+
+
+Started 2015-09-26T02:13:18.320Z POST /topic/de_collect 127.0.0.1
+Completed 200 [32m(13ms)[39m
+
+
+Started 2015-09-26T02:13:18.348Z POST /upload 127.0.0.1
+Completed 200 [32m(25ms)[39m
+
+
+Started 2015-09-26T02:13:18.379Z POST /topic/5605ff374fba2d8651c36cd8/lock 127.0.0.1
+  Render view notify/notify [32m(5ms)[39m
+Completed 200 [32m(20ms)[39m
+
+
+Started 2015-09-26T02:13:18.401Z POST /5605ff374fba2d8651c36cd8/reply 127.0.0.1
+Completed 403 [32m(8ms)[39m
+
+
+Started 2015-09-26T02:13:18.411Z POST /topic/5605ff374fba2d8651c36cd8/lock 127.0.0.1
+  Render view notify/notify [32m(3ms)[39m
+Completed 200 [32m(9ms)[39m
+
+
+Started 2015-09-26T02:13:18.423Z POST /5605ff374fba2d8651c36cd8/reply 127.0.0.1
+Completed 302 [32m(34ms)[39m
+
+
+Started 2015-09-26T02:13:18.722Z GET /user/alsotang1443233598460_354 127.0.0.1
+  Render view user/index [32m(4ms)[39m
+Completed 200 [32m(10ms)[39m
+
+
+Started 2015-09-26T02:13:18.734Z GET /stars 127.0.0.1
+  Render view user/stars [32m(2ms)[39m
+Completed 200 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:13:18.743Z GET /setting 127.0.0.1
+  Render view user/setting [32m(9ms)[39m
+Completed 200 [32m(13ms)[39m
+
+
+Started 2015-09-26T02:13:18.759Z GET /setting?save=success 127.0.0.1
+  Render view user/setting [32m(4ms)[39m
+Completed 200 [32m(8ms)[39m
+
+
+Started 2015-09-26T02:13:18.770Z POST /setting 127.0.0.1
+Completed 302 [32m(8ms)[39m
+
+
+Started 2015-09-26T02:13:18.781Z POST /setting 127.0.0.1
+  Render view user/setting [32m(4ms)[39m
+Completed 200 [32m(488ms)[39m
+
+
+Started 2015-09-26T02:13:19.270Z POST /setting 127.0.0.1
+  Render view user/setting [32m(3ms)[39m
+Completed 200 [32m(263ms)[39m
+
+
+Started 2015-09-26T02:13:19.535Z POST /user/set_star 127.0.0.1
+Completed 500 [32m(10ms)[39m
+
+
+Started 2015-09-26T02:13:19.547Z POST /user/set_star 127.0.0.1
+Completed 200 [32m(6ms)[39m
+
+
+Started 2015-09-26T02:13:19.557Z POST /user/set_star 127.0.0.1
+Completed 200 [32m(6ms)[39m
+
+
+Started 2015-09-26T02:13:19.567Z GET /user/alsotang1443233589803_5328/collections 127.0.0.1
+  Render view user/collect_topics [32m(7ms)[39m
+Completed 200 [32m(15ms)[39m
+
+
+Started 2015-09-26T02:13:19.585Z GET /users/top100 127.0.0.1
+  Render view user/top100 [32m(14ms)[39m
+Completed 200 [32m(26ms)[39m
+
+
+Started 2015-09-26T02:13:19.614Z GET /user/alsotang1443233589803_5328/topics 127.0.0.1
+  Render view user/topics [32m(11ms)[39m
+Completed 200 [32m(38ms)[39m
+
+
+Started 2015-09-26T02:13:19.656Z GET /user/alsotang1443233589803_5328/replies 127.0.0.1
+  Render view user/replies [32m(5ms)[39m
+Completed 200 [32m(25ms)[39m
+
+
+Started 2015-09-26T02:13:19.923Z POST /user/alsotang1443233599682_6128/block 127.0.0.1
+Completed 200 [32m(7ms)[39m
+
+
+Started 2015-09-26T02:13:19.934Z POST /user/alsotang1443233589803_5328/block 127.0.0.1
+Completed 200 [32m(4ms)[39m
+
+
+Started 2015-09-26T02:13:19.940Z POST /user/not_exists_user/block 127.0.0.1
+Completed 500 [32m(3ms)[39m
+
+
+Started 2015-09-26T02:13:20.188Z POST /user/alsotang1443233599944_8667/delete_all 127.0.0.1
+Completed 200 [32m(7ms)[39m
+
+
+Started 2015-09-26T02:13:20.200Z GET /test_peripperday 127.0.0.1
+Completed 200 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:13:20.206Z GET /test_peripperday 127.0.0.1
+Completed 200 [32m(1ms)[39m
+
+
+Started 2015-09-26T02:13:20.209Z GET /test_peripperday 127.0.0.1
+Completed 200 [32m(1ms)[39m
+
+
+Started 2015-09-26T02:13:20.211Z GET /test_peripperday 127.0.0.1
+Completed 200 [32m(2ms)[39m
+NodeClub listening on port 3000
+God bless love....
+You can debug your app with http://localhost:3000
+
+
+
+Started 2015-09-26T02:13:29.412Z GET /api/v1/messages?accesstoken=b43efb69-aeb7-457c-ac58-7813cd5f02e7 127.0.0.1
+Completed 200 [32m(19ms)[39m
+
+
+Started 2015-09-26T02:13:29.439Z GET /api/v1/message/count?accesstoken=b43efb69-aeb7-457c-ac58-7813cd5f02e7 127.0.0.1
+Completed 200 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:13:29.446Z POST /api/v1/message/mark_all 127.0.0.1
+Completed 200 [32m(18ms)[39m
+
+
+Started 2015-09-26T02:13:29.466Z POST /api/v1/message/mark_all 127.0.0.1
+Completed 200 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:13:29.484Z POST /api/v1/topic/5605ff490c4032a951505951/replies 127.0.0.1
+Completed 200 [32m(32ms)[39m
+
+
+Started 2015-09-26T02:13:29.518Z POST /api/v1/topic/5605ff490c4032a951505951/replies 127.0.0.1
+Completed 200 [32m(40ms)[39m
+
+
+Started 2015-09-26T02:13:29.563Z POST /api/v1/topic/5605ff490c4032a951505951not_found/replies 127.0.0.1
+Completed 500 [32m(11ms)[39m
+
+
+Started 2015-09-26T02:13:29.580Z POST /api/v1/topic/5605ff490c4032a951505951/replies 127.0.0.1
+Completed 403 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:13:29.590Z POST /api/v1/reply/5605ff490c4032a951505952/ups 127.0.0.1
+Completed 200 [32m(13ms)[39m
+
+
+Started 2015-09-26T02:13:29.605Z POST /api/v1/reply/5605ff490c4032a951505952/ups 127.0.0.1
+Completed 200 [32m(13ms)[39m
+
+
+Started 2015-09-26T02:13:29.623Z POST /api/v1/reply/5605ff490c4032a951505952not_found/ups 127.0.0.1
+Completed 500 [32m(6ms)[39m
+
+
+Started 2015-09-26T02:13:29.875Z POST /api/v1/accesstoken 127.0.0.1
+Completed 200 [32m(3ms)[39m
+
+
+Started 2015-09-26T02:13:29.880Z POST /api/v1/accesstoken 127.0.0.1
+Completed 403 [32m(2ms)[39m
+
+
+Started 2015-09-26T02:13:30.136Z GET /api/v1/topics 127.0.0.1
+Completed 200 [32m(88ms)[39m
+
+
+Started 2015-09-26T02:13:30.226Z GET /api/v1/topics?limit=2 127.0.0.1
+Completed 200 [32m(6ms)[39m
+
+
+Started 2015-09-26T02:13:30.234Z GET /api/v1/topic/5605ff4a0c4032a951505956 127.0.0.1
+Completed 200 [32m(16ms)[39m
+
+
+Started 2015-09-26T02:13:30.251Z POST /api/v1/topics 127.0.0.1
+Completed 200 [32m(14ms)[39m
+
+
+Started 2015-09-26T02:13:30.267Z POST /api/v1/topic/collect 127.0.0.1
+Completed 200 [32m(20ms)[39m
+
+
+Started 2015-09-26T02:13:30.290Z POST /api/v1/topic/collect 127.0.0.1
+Completed 500 [32m(6ms)[39m
+
+
+Started 2015-09-26T02:13:30.298Z POST /api/v1/topic/de_collect 127.0.0.1
+Completed 200 [32m(21ms)[39m
+
+
+Started 2015-09-26T02:13:30.323Z POST /api/v1/topic/de_collect 127.0.0.1
+Completed 500 [32m(8ms)[39m
+
+
+Started 2015-09-26T02:13:30.597Z GET /api/v1/user/alsotang1443233610334_1451 127.0.0.1
+Completed 200 [32m(7ms)[39m
+
+
+Started 2015-09-26T02:13:30.606Z GET / 127.0.0.1
+  Render view index [32m(52ms)[39m
+Completed 200 [32m(133ms)[39m
+
+
+Started 2015-09-26T02:13:32.271Z GET /my/messages 127.0.0.1
+  Render view message/index [32m(8ms)[39m
+Completed 200 [32m(34ms)[39m
+
+
+Started 2015-09-26T02:13:32.314Z GET /my/messages 127.0.0.1
+  Render view message/index [32m(9ms)[39m
+Completed 200 [32m(47ms)[39m
+
+
+Started 2015-09-26T02:13:33.374Z GET /auth/github 127.0.0.1
+Completed 302 [32m(2ms)[39m
+
+
+Started 2015-09-26T02:13:33.386Z GET /auth/github/test_callback?code=123456 127.0.0.1
+Completed 302 [32m(3ms)[39m
+
+
+Started 2015-09-26T02:13:33.392Z GET /auth/github/test_callback?code=123456 127.0.0.1
+Completed 302 [32m(3ms)[39m
+
+
+Started 2015-09-26T02:13:33.398Z GET /auth/github/new 127.0.0.1
+  Render view sign/new_oauth [32m(3ms)[39m
+Completed 200 [32m(4ms)[39m
+
+
+Started 2015-09-26T02:13:33.412Z POST /auth/github/test_create 127.0.0.1
+Completed 302 [32m(7ms)[39m
+
+
+Started 2015-09-26T02:13:33.422Z POST /auth/github/test_create 127.0.0.1
+Completed 500 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:13:33.674Z POST /auth/github/test_create 127.0.0.1
+Completed 302 [32m(243ms)[39m
+
+
+Started 2015-09-26T02:13:33.921Z GET /my/messages 127.0.0.1
+Completed 403 [32m(1ms)[39m
+
+
+Started 2015-09-26T02:13:33.924Z GET /my/messages 127.0.0.1
+  Render view message/index [32m(4ms)[39m
+Completed 200 [32m(23ms)[39m
+
+
+Started 2015-09-26T02:13:33.950Z POST /5605ff490c4032a95150594d/reply 127.0.0.1
+Completed 302 [32m(25ms)[39m
+
+
+Started 2015-09-26T02:13:33.977Z POST /5605ff490c4032a95150594d/reply 127.0.0.1
+  Render view notify/notify [32m(7ms)[39m
+Completed 422 [32m(12ms)[39m
+
+
+Started 2015-09-26T02:13:33.993Z POST /5605ff490c4032a95150594d/reply 127.0.0.1
+Completed 403 [32m(3ms)[39m
+
+
+Started 2015-09-26T02:13:33.998Z GET /reply/5605ff4d0c4032a951505960/edit 127.0.0.1
+  Render view notify/notify [32m(6ms)[39m
+Completed 403 [32m(17ms)[39m
+
+
+Started 2015-09-26T02:13:34.023Z GET /reply/5605ff4d0c4032a951505960/edit 127.0.0.1
+  Render view reply/edit [32m(8ms)[39m
+Completed 200 [32m(19ms)[39m
+
+
+Started 2015-09-26T02:13:34.047Z POST /reply/5605ff4d0c4032a951505960/edit 127.0.0.1
+Completed 302 [32m(14ms)[39m
+
+
+Started 2015-09-26T02:13:34.071Z POST /reply/5605ff4d0c4032a951505960/up 127.0.0.1
+Completed 200 [32m(12ms)[39m
+
+
+Started 2015-09-26T02:13:34.087Z POST /reply/5605ff4d0c4032a951505960/up 127.0.0.1
+Completed 200 [32m(15ms)[39m
+
+
+Started 2015-09-26T02:13:34.104Z POST /reply/5605ff4d0c4032a951505960/delete 127.0.0.1
+Completed 403 [32m(1ms)[39m
+
+
+Started 2015-09-26T02:13:34.107Z POST /reply/5605ff4d0c4032a951505960/delete 127.0.0.1
+Completed 200 [32m(15ms)[39m
+
+
+Started 2015-09-26T02:13:34.139Z GET /rss 127.0.0.1
+Completed 200 [32m(110ms)[39m
+
+
+Started 2015-09-26T02:13:34.253Z GET /rss 127.0.0.1
+Completed 404 [32m(1ms)[39m
+
+
+Started 2015-09-26T02:13:34.256Z GET /rss 127.0.0.1
+Completed 500 [32m(3ms)[39m
+
+
+Started 2015-09-26T02:13:34.262Z GET /search?q=node%20%E4%B8%AD%E6%96%87 127.0.0.1
+Completed 302 [32m(2ms)[39m
+
+
+Started 2015-09-26T02:13:34.267Z GET /signup 127.0.0.1
+  Render view sign/signup [32m(3ms)[39m
+Completed 200 [32m(4ms)[39m
+
+
+Started 2015-09-26T02:13:34.273Z GET /signup_github 127.0.0.1
+Completed 302 [32m(2ms)[39m
+
+
+Started 2015-09-26T02:13:34.278Z POST /signup 127.0.0.1
+  Render view sign/signup [32m(4ms)[39m
+Completed 200 [32m(274ms)[39m
+
+
+Started 2015-09-26T02:13:34.556Z POST /signup 127.0.0.1
+  Render view sign/signup [32m(3ms)[39m
+Completed 422 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:13:34.563Z POST /signup 127.0.0.1
+  Render view sign/signup [32m(4ms)[39m
+Completed 422 [32m(7ms)[39m
+
+
+Started 2015-09-26T02:13:34.574Z GET /signin 127.0.0.1
+  Render view sign/signin [32m(4ms)[39m
+Completed 200 [32m(6ms)[39m
+
+
+Started 2015-09-26T02:13:34.583Z POST /signin 127.0.0.1
+  Render view sign/signin [32m(15ms)[39m
+Completed 422 [32m(18ms)[39m
+
+
+Started 2015-09-26T02:13:34.607Z POST /signin 127.0.0.1
+  Render view sign/signin [32m(3ms)[39m
+Completed 403 [32m(246ms)[39m
+
+
+Started 2015-09-26T02:13:34.855Z POST /signout 127.0.0.1
+Completed 302 [32m(1ms)[39m
+
+
+Started 2015-09-26T02:13:34.859Z GET /active_account?key=c439b75495f833f609fc2890f3c09166&name=testuser1443233608310 127.0.0.1
+  Render view notify/notify [32m(3ms)[39m
+Completed 200 [32m(7ms)[39m
+
+
+Started 2015-09-26T02:13:34.869Z POST /signin 127.0.0.1
+Completed 302 [32m(240ms)[39m
+
+
+Started 2015-09-26T02:13:35.111Z GET /search_pass 127.0.0.1
+  Render view sign/search_pass [32m(2ms)[39m
+Completed 200 [32m(3ms)[39m
+
+
+Started 2015-09-26T02:13:35.117Z POST /search_pass 127.0.0.1
+  Render view notify/notify [32m(3ms)[39m
+Completed 200 [32m(7ms)[39m
+
+
+Started 2015-09-26T02:13:35.128Z GET /reset_pass?key=3535bd02-ffcf-4318-a0ec-fbb4e3bbce5a&name=testuser1443233608310 127.0.0.1
+  Render view sign/reset [32m(2ms)[39m
+Completed 200 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:13:35.135Z GET /reset_pass?key=wrong%20key&name=testuser1443233608310 127.0.0.1
+  Render view notify/notify [32m(2ms)[39m
+Completed 403 [32m(4ms)[39m
+
+
+Started 2015-09-26T02:13:35.141Z POST /reset_pass 127.0.0.1
+  Render view notify/notify [32m(4ms)[39m
+Completed 200 [32m(265ms)[39m
+
+
+Started 2015-09-26T02:13:35.408Z GET / 127.0.0.1
+  Render view index [32m(29ms)[39m
+Completed 200 [32m(89ms)[39m
+
+
+Started 2015-09-26T02:13:35.502Z GET /?page=-1 127.0.0.1
+  Render view index [32m(26ms)[39m
+Completed 200 [32m(88ms)[39m
+
+
+Started 2015-09-26T02:13:35.594Z GET /sitemap.xml 127.0.0.1
+Completed 200 [32m(10ms)[39m
+
+
+Started 2015-09-26T02:13:35.606Z GET /app/download 127.0.0.1
+Completed 302 [32m(1ms)[39m
+
+
+Started 2015-09-26T02:13:35.609Z GET /about 127.0.0.1
+  Render view static/about [32m(8ms)[39m
+Completed 200 [32m(9ms)[39m
+
+
+Started 2015-09-26T02:13:35.620Z GET /faq 127.0.0.1
+  Render view static/faq [32m(3ms)[39m
+Completed 200 [32m(3ms)[39m
+
+
+Started 2015-09-26T02:13:35.625Z GET /getstart 127.0.0.1
+  Render view static/getstart [32m(7ms)[39m
+Completed 200 [32m(9ms)[39m
+
+
+Started 2015-09-26T02:13:35.642Z GET /robots.txt 127.0.0.1
+Completed 200 [32m(1ms)[39m
+
+
+Started 2015-09-26T02:13:35.646Z GET /topic/5605ff490c4032a95150594d 127.0.0.1
+  Render view topic/index [32m(10ms)[39m
+Completed 200 [32m(38ms)[39m
+
+
+Started 2015-09-26T02:13:35.688Z GET /topic/5605ff490c4032a95150594d 127.0.0.1
+  Render view topic/index [32m(9ms)[39m
+Completed 200 [32m(43ms)[39m
+
+
+Started 2015-09-26T02:13:35.735Z GET /topic/create 127.0.0.1
+  Render view topic/edit [32m(5ms)[39m
+Completed 200 [32m(7ms)[39m
+
+
+Started 2015-09-26T02:13:35.744Z POST /topic/create 127.0.0.1
+  Render view topic/edit [32m(4ms)[39m
+Completed 422 [32m(8ms)[39m
+
+
+Started 2015-09-26T02:13:35.757Z POST /topic/create 127.0.0.1
+  Render view topic/edit [32m(4ms)[39m
+Completed 422 [32m(10ms)[39m
+
+
+Started 2015-09-26T02:13:35.769Z POST /topic/create 127.0.0.1
+  Render view topic/edit [32m(3ms)[39m
+Completed 422 [32m(6ms)[39m
+
+
+Started 2015-09-26T02:13:35.777Z POST /topic/create 127.0.0.1
+Completed 302 [32m(23ms)[39m
+
+
+Started 2015-09-26T02:13:35.804Z GET /topic/5605ff490c4032a95150594d/edit 127.0.0.1
+  Render view topic/edit [32m(3ms)[39m
+Completed 200 [32m(12ms)[39m
+
+
+Started 2015-09-26T02:13:35.821Z POST /topic/5605ff490c4032a95150594d/edit 127.0.0.1
+Completed 302 [32m(21ms)[39m
+
+
+Started 2015-09-26T02:13:35.850Z POST /topic/5605ff4f0c4032a951505963/delete 127.0.0.1
+Completed 403 [32m(4ms)[39m
+
+
+Started 2015-09-26T02:13:35.856Z POST /topic/5605ff4f0c4032a951505963/delete 127.0.0.1
+Completed 200 [32m(9ms)[39m
+
+
+Started 2015-09-26T02:13:35.868Z POST /topic/5605ff490c4032a95150594d/top 127.0.0.1
+  Render view notify/notify [32m(6ms)[39m
+Completed 200 [32m(18ms)[39m
+
+
+Started 2015-09-26T02:13:35.891Z POST /topic/5605ff490c4032a95150594d/top 127.0.0.1
+  Render view notify/notify [32m(3ms)[39m
+Completed 200 [32m(12ms)[39m
+
+
+Started 2015-09-26T02:13:35.908Z POST /topic/5605ff490c4032a95150594d/good 127.0.0.1
+  Render view notify/notify [32m(3ms)[39m
+Completed 200 [32m(10ms)[39m
+
+
+Started 2015-09-26T02:13:35.920Z POST /topic/5605ff490c4032a95150594d/good 127.0.0.1
+  Render view notify/notify [32m(5ms)[39m
+Completed 200 [32m(15ms)[39m
+
+
+Started 2015-09-26T02:13:35.939Z POST /topic/collect 127.0.0.1
+Completed 200 [32m(25ms)[39m
+
+
+Started 2015-09-26T02:13:35.967Z POST /topic/de_collect 127.0.0.1
+Completed 200 [32m(17ms)[39m
+
+
+Started 2015-09-26T02:13:35.993Z POST /upload 127.0.0.1
+Completed 200 [32m(6ms)[39m
+
+
+Started 2015-09-26T02:13:36.003Z POST /topic/5605ff490c4032a95150594d/lock 127.0.0.1
+  Render view notify/notify [32m(3ms)[39m
+Completed 200 [32m(11ms)[39m
+
+
+Started 2015-09-26T02:13:36.016Z POST /5605ff490c4032a95150594d/reply 127.0.0.1
+Completed 403 [32m(9ms)[39m
+
+
+Started 2015-09-26T02:13:36.030Z POST /topic/5605ff490c4032a95150594d/lock 127.0.0.1
+  Render view notify/notify [32m(2ms)[39m
+Completed 200 [32m(12ms)[39m
+
+
+Started 2015-09-26T02:13:36.045Z POST /5605ff490c4032a95150594d/reply 127.0.0.1
+Completed 302 [32m(25ms)[39m
+
+
+Started 2015-09-26T02:13:36.329Z GET /user/alsotang1443233616072_4417 127.0.0.1
+  Render view user/index [32m(9ms)[39m
+Completed 200 [32m(18ms)[39m
+
+
+Started 2015-09-26T02:13:36.357Z GET /stars 127.0.0.1
+  Render view user/stars [32m(8ms)[39m
+Completed 200 [32m(12ms)[39m
+
+
+Started 2015-09-26T02:13:36.377Z GET /setting 127.0.0.1
+  Render view user/setting [32m(8ms)[39m
+Completed 200 [32m(12ms)[39m
+
+
+Started 2015-09-26T02:13:36.394Z GET /setting?save=success 127.0.0.1
+  Render view user/setting [32m(6ms)[39m
+Completed 200 [32m(13ms)[39m
+
+
+Started 2015-09-26T02:13:36.409Z POST /setting 127.0.0.1
+Completed 302 [32m(11ms)[39m
+
+
+Started 2015-09-26T02:13:36.422Z POST /setting 127.0.0.1
+  Render view user/setting [32m(4ms)[39m
+Completed 200 [32m(495ms)[39m
+
+
+Started 2015-09-26T02:13:36.919Z POST /setting 127.0.0.1
+  Render view user/setting [32m(3ms)[39m
+Completed 200 [32m(248ms)[39m
+
+
+Started 2015-09-26T02:13:37.170Z POST /user/set_star 127.0.0.1
+Completed 500 [32m(11ms)[39m
+
+
+Started 2015-09-26T02:13:37.183Z POST /user/set_star 127.0.0.1
+Completed 200 [32m(6ms)[39m
+
+
+Started 2015-09-26T02:13:37.192Z POST /user/set_star 127.0.0.1
+Completed 200 [32m(6ms)[39m
+
+
+Started 2015-09-26T02:13:37.201Z GET /user/alsotang1443233607430_23/collections 127.0.0.1
+  Render view user/collect_topics [32m(9ms)[39m
+Completed 200 [32m(17ms)[39m
+
+
+Started 2015-09-26T02:13:37.220Z GET /users/top100 127.0.0.1
+  Render view user/top100 [32m(9ms)[39m
+Completed 200 [32m(29ms)[39m
+
+
+Started 2015-09-26T02:13:37.252Z GET /user/alsotang1443233607430_23/topics 127.0.0.1
+  Render view user/topics [32m(10ms)[39m
+Completed 200 [32m(40ms)[39m
+
+
+Started 2015-09-26T02:13:37.294Z GET /user/alsotang1443233607430_23/replies 127.0.0.1
+  Render view user/replies [32m(5ms)[39m
+Completed 200 [32m(26ms)[39m
+
+
+Started 2015-09-26T02:13:37.569Z POST /user/alsotang1443233617321_2839/block 127.0.0.1
+Completed 200 [32m(5ms)[39m
+
+
+Started 2015-09-26T02:13:37.579Z POST /user/alsotang1443233607430_23/block 127.0.0.1
+Completed 200 [32m(4ms)[39m
+
+
+Started 2015-09-26T02:13:37.584Z POST /user/not_exists_user/block 127.0.0.1
+Completed 500 [32m(3ms)[39m
+
+
+Started 2015-09-26T02:13:37.843Z POST /user/alsotang1443233617588_3453/delete_all 127.0.0.1
+Completed 200 [32m(8ms)[39m
+
+
+Started 2015-09-26T02:13:37.856Z GET /test_peripperday 127.0.0.1
+Completed 200 [32m(2ms)[39m
+
+
+Started 2015-09-26T02:13:37.860Z GET /test_peripperday 127.0.0.1
+Completed 200 [32m(1ms)[39m
+
+
+Started 2015-09-26T02:13:37.863Z GET /test_peripperday 127.0.0.1
+Completed 200 [32m(1ms)[39m
+
+
+Started 2015-09-26T02:13:37.865Z GET /test_peripperday 127.0.0.1
+Completed 200 [32m(1ms)[39m
